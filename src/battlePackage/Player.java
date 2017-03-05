@@ -95,8 +95,8 @@ public abstract class Player implements Character {
 	}
 
 	@Override
-	public void attacked(int attackDamage) {
-		setHealth(getHealth() - attackDamage);
+	public void attacked(int afterMathEffect) {
+		setHealth(getHealth() - afterMathEffect);
 		;
 	}
 

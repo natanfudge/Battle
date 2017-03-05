@@ -13,5 +13,7 @@ public class Mage extends Player {
 	public PlayerType getPlayerType() {
 		return PlayerType.mage;
 	}
-
+	public void magicMissle(Character character) {
+		character.attacked(getSpellDamage());
+	}
 }
