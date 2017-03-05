@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CharacterFactory {
+	
+	private static boolean printOnly=false;
 
     private static Map<String, Enemy> characters = new HashMap<>();
 
@@ -30,7 +32,13 @@ public class CharacterFactory {
                 break;
 
         }
+        if (character!=null)
+        	character.setPrintOnly(printOnly);
         return character;
+    }
+    
+    public static void setPrintOnly(boolean printOnly) {
+    	CharacterFactory.printOnly=printOnly;
     }
 
 

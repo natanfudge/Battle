@@ -14,6 +14,10 @@ public class BattleSimulator {
 		Map<String, Enemy> enemies = new HashMap<>();
 		enemies.put("skeleton0", new Skeleton("skeleton0"));
 		CharacterFactory.setCharacters(enemies);
+		if (args!=null && args.length>0) {
+			if (args[0].equalsIgnoreCase("printonly"))
+				CharacterFactory.setPrintOnly(true);
+		}
 		
 		/*for (int i=0;i<10;i++) {
 			skeletons.add(new Skeleton("skeleton"+i));

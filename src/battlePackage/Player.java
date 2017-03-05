@@ -12,6 +12,7 @@ public abstract class Player implements Character {
 	private PlayerType playerType;
 	private float attackSpeed;
 	private float attackDelay;
+	private boolean printOnly;
 
 	public int getHealth() {
 		return health;
@@ -91,7 +92,10 @@ public abstract class Player implements Character {
 
 	@Override
 	public void attack(Character character) {
-		character.attacked(getAttackDamage());
+		if (isPrintOnly()) {
+			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
+		} else 
+			character.attacked(getAttackDamage());
 	}
 
 	@Override
@@ -115,6 +119,15 @@ public abstract class Player implements Character {
 	public float getAttackSpeed() {
 		return attackSpeed;
 	}
+
+	public boolean isPrintOnly() {
+		return printOnly;
+	}
+
+	public void setPrintOnly(boolean printOnly) {
+		this.printOnly = printOnly;
+	}
+	
 }
 
 	
