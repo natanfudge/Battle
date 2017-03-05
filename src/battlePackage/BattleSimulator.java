@@ -59,7 +59,7 @@ public class BattleSimulator {
 				switch (nextAction) {
 
 					case "attack":
-
+System.out.println("How would you like to attack? 	"+ main.getAbility1());
 						System.out.println("What would you like to attack?     " + CharacterFactory.getEnemy("skeleton0").getName());
 
 						Character character = null;

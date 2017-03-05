@@ -82,8 +82,7 @@ public abstract class Player implements Character {
 
     public Ability getAbility5() {return ability5;} public void setAbility5(Ability ability5) {this.ability5 = ability5;}
 
-    public Ability getAbility6() {return ability6;} public void setAbility6(Ability ability6) {this.ability6 = ability6;
-    }
+    public Ability getAbility6() {return ability6;} public void setAbility6(Ability ability6) {this.ability6 = ability6;}
 
 
 
@@ -104,6 +103,12 @@ public abstract class Player implements Character {
         this.attackSpeed = attackSpeed;
         attackDelay= 1 / attackSpeed;
         this.spellDamage=spellDamage;
+		this.ability1 = ability1;
+		this.ability2 = ability2;
+		this.ability3 = ability3;
+		this.ability4 = ability4;
+		this.ability5 = ability5;
+		this.ability6 = ability6;
 
     }
 
@@ -122,7 +127,9 @@ public abstract class Player implements Character {
 	public void setPrintOnly(boolean printOnly) {
 		this.printOnly = printOnly;
 	}
+
+	}
 	
-}
+
 
 	
