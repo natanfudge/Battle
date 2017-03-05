@@ -12,6 +12,7 @@ public abstract class Player implements Character {
 	private PlayerType playerType;
 	private float attackSpeed;
 	private float attackDelay;
+	private boolean printOnly;
 	private Ability ability1;
     private Ability ability2;
     private Ability ability3;
@@ -86,6 +87,13 @@ public abstract class Player implements Character {
 
 
 
+	@Override
+	public void attack(Character character) {
+		if (isPrintOnly()) {
+			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
+		} else 
+			character.attacked(getAttackDamage());
+	}
 
     public Player(int health, int mana, int attackDamage,float attackSpeed,int spellDamage, String name) {
         super();
@@ -100,16 +108,21 @@ public abstract class Player implements Character {
     }
 
 
-    @Override
-    public void attack(Character character) {
-        character.attacked(getAttackDamage());
-    }
 
     @Override
     public void attacked(int afterMathEffect) {
         setHealth(getHealth() - afterMathEffect);
         ;
     }
+
+	public boolean isPrintOnly() {
+		return printOnly;
+	}
+
+	public void setPrintOnly(boolean printOnly) {
+		this.printOnly = printOnly;
+	}
+	
 }
 
 	
