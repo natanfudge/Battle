@@ -77,7 +77,7 @@ public abstract class Player implements Character {
 		this.playerType = playerType;
 	}
 
-	public Player(int health, int mana, int attackDamage,float attackSpeed, String name) {
+	public Player(int health, int mana, int attackDamage,float attackSpeed,int spellDamage, String name) {
 		super();
 		this.health = health;
 		this.mana = mana;
@@ -85,7 +85,7 @@ public abstract class Player implements Character {
 		this.name = name;
 		this.attackSpeed = attackSpeed;
 		attackDelay= 1 / attackSpeed;
-		
+		this.spellDamage=spellDamage;
 
 	}
 

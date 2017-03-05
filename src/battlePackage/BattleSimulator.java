@@ -28,13 +28,21 @@ public class BattleSimulator {
 		
 		   System.out.println("Enter your name");  
 		   String name=sc.next();  
-		   players.add(new Warrior(1000, 50, 100,3.5f, name));
+		   System.out.println("What type would you like?");
+		   String type=sc.next(); 
+		   Player player = CharacterFactory.createCharacter(1000, 50, 100,3.5f,20, name,type);
+		   System.out.println(player.getClass().getSimpleName());
+		   players.add(player);
 		   Character main=players.get(0);		   
 		   System.out.println("Your name is "+ main.getName());
 		   System.out.println("A skeleton appears! What would you like to do?");
 		   System.out.println("attack      run");
+		   boolean ok=true;
+		   while (!ok){
 		   String nextAction=sc.next();
+		   ok=true;
 		   switch (nextAction) {
+		    
 			case "attack":
 				System.out.println("What would you like to attack?     "+ CharacterFactory.getEnemy("skeleton0").getName());
 				
@@ -59,11 +67,12 @@ public class BattleSimulator {
 				System.out.println("it works");
 				break;
 			default: System.out.println("what?");
+			ok=false;
 		break;
-		   //test
+		   }
 			
 		}
-		 
+	
 		//test
 		
 		

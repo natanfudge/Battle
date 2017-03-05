@@ -16,6 +16,19 @@ public class CharacterFactory {
 		return enemy;
 		
 	}
+	public static Player createCharacter(int health, int mana, int attackDamage,float attackSpeed,int spellDamage, String name,String type){
+		
+		Player character=null;
+		type=type.toLowerCase();
+		switch(type){
+		case "warrior" :
+			character=new Warrior(health,  mana,  attackDamage, attackSpeed,spellDamage, name); 
+			break;
+	
+		}
+		return character;
+	}
+		
 	
 	
 
