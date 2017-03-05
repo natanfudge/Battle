@@ -33,7 +33,7 @@ public class BattleSimulator {
 		System.out.println("Enter your name");
 		String name = sc.next();
 
-		System.out.print("What type would you like?	"+System.lineSeparator()+
+		System.out.print("Choose your player type"	+System.lineSeparator()+
 				"Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
 				"Mage-low health high spell power low attack damage low attack speed"+System.lineSeparator());
 		Player player = null;
@@ -48,9 +48,9 @@ public class BattleSimulator {
 				players.add(player);
 			}
 		}
-			Character main = players.get(0);
+			Player main = players.get(0);
 			System.out.println();
-			System.out.println("A skeleton appears! What would you like to do?");
+			System.out.println("A skeleton appears! What do you do?");
 			System.out.println("attack      run");
 			boolean ok = true;
 			do{
@@ -59,8 +59,14 @@ public class BattleSimulator {
 				switch (nextAction) {
 
 					case "attack":
-System.out.println("How would you like to attack? 	"+ main.getAbility1());
-						System.out.println("What would you like to attack?     " + CharacterFactory.getEnemy("skeleton0").getName());
+System.out.println("How to attack? 	") ;
+if(main.getAbility1()!=null)System.out.print("    "+main.getAbility1());
+if(main.getAbility2()!=null)System.out.println("    "+main.getAbility2());
+
+
+
+
+						System.out.println("Who to attack?     " + CharacterFactory.getEnemy("skeleton0").getName());
 
 						Character character = null;
 						while (character == null) {
@@ -80,10 +86,11 @@ System.out.println("How would you like to attack? 	"+ main.getAbility1());
 						;
 						break;
 					case "run":
-						System.out.println("it works");
+						System.out.println("Coward");
+						sc.close();
 						break;
 					default:
-						System.out.println("what?");
+						System.out.println("What?");
 						ok = false;
 						break;
 				}
