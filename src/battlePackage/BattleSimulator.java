@@ -38,14 +38,15 @@ public class BattleSimulator {
 			Player main = players.get(0);
 			Utilities.p();
 			Utilities.p("A skeleton appears! What do you do?");
-			Utilities.p("attack      run");
+			Utilities.p("[1] attack"+System.lineSeparator()+
+					"[2] run");
 			boolean ok = true;
 			do{
 				String nextAction = sc.next();
 				ok = true;
 				switch (nextAction) {
 
-					case "attack":
+					case "1":
 Utilities.p("How to attack? 	") ;
 						for (Ability ab:main.getAbilities()) {
 							Utilities.p("    "+ab);
@@ -62,7 +63,7 @@ Utilities.p("How to attack? 	") ;
 						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
 						;
 						break;
-					case "run":
+					case "2":
 						Utilities.p("Coward");
 						sc.close();
 						break;
@@ -74,7 +75,7 @@ Utilities.p("How to attack? 	") ;
 
 			}while(!ok);
 
-			//test
+
 
 
 			sc.close();
@@ -97,8 +98,29 @@ Utilities.p("How to attack? 	") ;
 
 	}
 
+
+	private static void createCharacter(List<Player> players, Scanner sc) {
+		Utilities.p("Enter your name");
+		String name = sc.next();
+		Utilities.p("Choose your player type"	+System.lineSeparator()+
+				"[1] Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
+				"[2] Mage-low health high spell power low attack damage low attack speed");
+		Player player = null;
+
+		while (player == null) {
+			String type = sc.next();
+
+			player = CharacterFactory.createCharacter( name, type);
+			if (player != null) {
+				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
+
+				players.add(player);
+			}
+		}
+	}
 	private static Character selectTarget(Scanner sc, Character character) {
-		Utilities.p("Who to attack?     skeleton0");
+		Utilities.p("Who to attack?   " +System.lineSeparator()+
+				"[1] skeleton0");
 		while (character == null) {
 
 
@@ -113,23 +135,4 @@ Utilities.p("How to attack? 	") ;
 		return character;
 	}
 
-	private static void createCharacter(List<Player> players, Scanner sc) {
-		Utilities.p("Enter your name");
-		String name = sc.next();
-		Utilities.p("Choose your player type"	+System.lineSeparator()+
-				"Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
-				"Mage-low health high spell power low attack damage low attack speed");
-		Player player = null;
-
-		while (player == null) {
-			String type = sc.next();
-
-			player = CharacterFactory.createCharacter( name, type);
-			if (player != null) {
-				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
-
-				players.add(player);
-			}
-		}
-	}
 }
