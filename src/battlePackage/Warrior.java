@@ -12,6 +12,11 @@ public class Warrior extends Player {
 		super(health, mana, attackDamage, attackSpeed,spellDamage, name);
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public void addAbilities() {
+		getAbilities().add(Ability.normal);
+	}
 	
 	}
 	

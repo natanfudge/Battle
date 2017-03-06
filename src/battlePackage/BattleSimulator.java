@@ -17,6 +17,8 @@ public class BattleSimulator {
 		if (args!=null && args.length>0) {
 			if (args[0].equalsIgnoreCase("printonly"))
 				CharacterFactory.setPrintOnly(true);
+			if (args.length>1 && args[1].equalsIgnoreCase("dev"))
+				Utilities.setDev(true);
 		}
 		
 		/*for (int i=0;i<10;i++) {
@@ -30,28 +32,13 @@ public class BattleSimulator {
 		Scanner sc = new Scanner(System.in);
 
 
-		System.out.println("Enter your name");
-		String name = sc.next();
+		
 
-		System.out.print("Choose your player type"	+System.lineSeparator()+
-				"Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
-				"Mage-low health high spell power low attack damage low attack speed"+System.lineSeparator());
-		Player player = null;
-
-		while (player == null) {
-			String type = sc.next();
-
-			player = CharacterFactory.createCharacter( name, type);
-			if (player != null) {
-				System.out.println(player.getName()+" is a "+player.getClass().getSimpleName());
-
-				players.add(player);
-			}
-		}
+		createCharacter(players, sc);
 			Player main = players.get(0);
-			System.out.println();
-			System.out.println("A skeleton appears! What do you do?");
-			System.out.println("attack      run");
+			Utilities.p();
+			Utilities.p("A skeleton appears! What do you do?");
+			Utilities.p("attack      run");
 			boolean ok = true;
 			do{
 				String nextAction = sc.next();
@@ -59,38 +46,28 @@ public class BattleSimulator {
 				switch (nextAction) {
 
 					case "attack":
-System.out.println("How to attack? 	") ;
-if(main.getAbility1()!=null)System.out.print("    "+main.getAbility1());
-if(main.getAbility2()!=null)System.out.println("    "+main.getAbility2());
+Utilities.p("How to attack? 	") ;
+						for (Ability ab:main.getAbilities()) {
+							Utilities.p("    "+ab);
+						}
 
 
 
 
-						System.out.println("Who to attack?     " + CharacterFactory.getEnemy("skeleton0").getName());
+						
 
 						Character character = null;
-						while (character == null) {
-
-
-							String target = sc.next();
-							character = CharacterFactory.getEnemy(target);
-							if (character != null) {
-								main.attack(character);
-								System.out.println(CharacterFactory.getEnemy(target).getName() + " now has " + CharacterFactory.getEnemy(target).getHealth() + " health");
-							} else {
-								System.out.println("invalid target");
-							}
-
-
-						}
+					    character = selectTarget(sc, character);
+						main.attack(character);
+						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
 						;
 						break;
 					case "run":
-						System.out.println("Coward");
+						Utilities.p("Coward");
 						sc.close();
 						break;
 					default:
-						System.out.println("What?");
+						Utilities.p("What?");
 						ok = false;
 						break;
 				}
@@ -118,5 +95,41 @@ if(main.getAbility2()!=null)System.out.println("    "+main.getAbility2());
 */
 
 
+	}
+
+	private static Character selectTarget(Scanner sc, Character character) {
+		Utilities.p("Who to attack?     skeleton0");
+		while (character == null) {
+
+
+			String target = sc.next();
+			character = CharacterFactory.getEnemy(target);
+			if (character==null) {
+				Utilities.p("invalid target");
+			}
+
+
+		}
+		return character;
+	}
+
+	private static void createCharacter(List<Player> players, Scanner sc) {
+		Utilities.p("Enter your name");
+		String name = sc.next();
+		Utilities.p("Choose your player type"	+System.lineSeparator()+
+				"Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
+				"Mage-low health high spell power low attack damage low attack speed");
+		Player player = null;
+
+		while (player == null) {
+			String type = sc.next();
+
+			player = CharacterFactory.createCharacter( name, type);
+			if (player != null) {
+				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
+
+				players.add(player);
+			}
+		}
 	}
 }

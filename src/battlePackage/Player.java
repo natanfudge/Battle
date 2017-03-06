@@ -1,5 +1,8 @@
 package battlePackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Player implements Character {
 
 	private int health;
@@ -13,12 +16,7 @@ public abstract class Player implements Character {
 	private float attackSpeed;
 	private float attackDelay;
 	private boolean printOnly;
-	private Ability ability1;
-    private Ability ability2;
-    private Ability ability3;
-    private Ability ability4;
-    private Ability ability5;
-    private Ability ability6;
+	private List<Ability> abilities=new ArrayList<>();
 
 	public int getHealth() {
 		return health;
@@ -72,20 +70,15 @@ public abstract class Player implements Character {
 		this.attackSpeed = attackSpeed;
 	}
 
-    public Ability getAbility1() {return ability1;} public void setAbility1(Ability ability1) {this.ability1 = ability1;}
-
-    public Ability getAbility2() {return ability2;} public void setAbility2(Ability ability2) {this.ability2 = ability2;}
-
-    public Ability getAbility3() {return ability3;} public void setAbility3(Ability ability3) {this.ability3 = ability3;}
-
-    public Ability getAbility4() {return ability4;} public void setAbility4(Ability ability4) {this.ability4 = ability4;}
-
-    public Ability getAbility5() {return ability5;} public void setAbility5(Ability ability5) {this.ability5 = ability5;}
-
-    public Ability getAbility6() {return ability6;} public void setAbility6(Ability ability6) {this.ability6 = ability6;}
+   
 
 
-
+	public List<Ability> getAbilities() {
+		return abilities;
+	}
+	public void setAbilities(List<Ability> abilities) {
+		this.abilities = abilities;
+	}
 	@Override
 	public void attack(Character character) {
 		if (isPrintOnly()) {
@@ -103,12 +96,7 @@ public abstract class Player implements Character {
         this.attackSpeed = attackSpeed;
         attackDelay= 1 / attackSpeed;
         this.spellDamage=spellDamage;
-		this.ability1 = ability1;
-		this.ability2 = ability2;
-		this.ability3 = ability3;
-		this.ability4 = ability4;
-		this.ability5 = ability5;
-		this.ability6 = ability6;
+        addAbilities();
 
     }
 
@@ -128,8 +116,10 @@ public abstract class Player implements Character {
 		this.printOnly = printOnly;
 	}
 
-	}
+
+    public abstract void addAbilities();
 	
+}
 
 
 	
