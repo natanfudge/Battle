@@ -1,26 +1,26 @@
 package battlePackage;
 
 public interface Character {
-	public int getHealth();
+	int getHealth();
 
-	public int getMana();
+	int getMana();
 
-	public int getAttackDamage();
+	int getAttackDamage();
 
-	public int getSpellDamage();
+	int getSpellDamage();
 
-	public float getHealthRegeneration();
+	float getHealthRegeneration();
 
-	public float getManaRegeneration();
+	float getManaRegeneration();
 
-	 public String getName();
+	String getName();
 	
-	public void attack(Character character);
+	void attack(Character character);
 	
-	public void attacked(int attackDamage);
+	void attacked(int attackDamage);
 
-	public float getAttackSpeed();
+	float getAttackSpeed();
 	
-	public float getAttackDelay();
+	float getAttackDelay();
 
 }

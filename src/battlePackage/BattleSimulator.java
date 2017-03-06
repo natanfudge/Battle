@@ -38,9 +38,9 @@ public class BattleSimulator {
 			Player main = players.get(0);
 			Utilities.p();
 			Utilities.p("A skeleton appears! What do you do?");
-			Utilities.p("[1] attack"+System.lineSeparator()+
+			Utilities.p("[1] attack \n"+
 					"[2] run");
-			boolean ok = true;
+			boolean ok;
 			do{
 				String nextAction = sc.next();
 				ok = true;
@@ -61,7 +61,7 @@ Utilities.p("How to attack? 	") ;
 					    character = selectTarget(sc, character);
 						main.attack(character);
 						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
-						;
+
 						break;
 					case "2":
 						Utilities.p("Coward");
@@ -88,7 +88,7 @@ Utilities.p("How to attack? 	") ;
 		try {
 			Thread.sleep(1000000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -102,8 +102,8 @@ Utilities.p("How to attack? 	") ;
 	private static void createCharacter(List<Player> players, Scanner sc) {
 		Utilities.p("Enter your name");
 		String name = sc.next();
-		Utilities.p("Choose your player type"	+System.lineSeparator()+
-				"[1] Warrior-high health low spell power medium attack damage medium attack speed" +System.lineSeparator()+
+		Utilities.p("Choose your player type \n"	+
+				"[1] Warrior-high health low spell power medium attack damage medium attack speed \n" +
 				"[2] Mage-low health high spell power low attack damage low attack speed");
 		Player player = null;
 
@@ -119,7 +119,7 @@ Utilities.p("How to attack? 	") ;
 		}
 	}
 	private static Character selectTarget(Scanner sc, Character character) {
-		Utilities.p("Who to attack?   " +System.lineSeparator()+
+		Utilities.p("Who to attack?   \n" +
 				"[1] skeleton0");
 		while (character == null) {
 
