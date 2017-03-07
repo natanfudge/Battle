@@ -8,11 +8,16 @@ import java.util.Scanner;
 
 public class BattleSimulator {
 
+	private static final String PLAYER_TYPE = "playerType";
+	private static final String TARGET = "target";
 	public static void main(String[] args) {
 
 		List<Player> players = new ArrayList<>();
-		Map<String, Enemy> enemies = new HashMap<>();
-		enemies.put("skeleton0", new Skeleton("skeleton0"));
+		List<Enemy> enemies = new ArrayList<>();
+		 
+		enemies.add(new Skeleton("skeleton0"));
+		enemies.add(new Skeleton("bob"));
+		enemies.add(new Skeleton("kuku"));
 		CharacterFactory.setCharacters(enemies);
 		if (args!=null && args.length>0) {
 			if (args[0].equalsIgnoreCase("printonly"))
@@ -21,14 +26,8 @@ public class BattleSimulator {
 				Utilities.setDev(true);
 		}
 		
-		/*for (int i=0;i<10;i++) {
-			skeletons.add(new Skeleton("skeleton"+i));
-		}
-		
-		
-		players.add(new Warrior(1000, 50, 100,3.5f, "Garrosh"));
-		players.add(new Warrior(1000, 50, 100,3.5f, "Garrosh"));
-		*/
+	Option.fillDialogues();
+	Option.fillOptions();
 		Scanner sc = new Scanner(System.in);
 
 
@@ -102,9 +101,11 @@ Utilities.p("How to attack? 	") ;
 	private static void createCharacter(List<Player> players, Scanner sc) {
 		Utilities.p("Enter your name");
 		String name = sc.next();
-		Utilities.p("Choose your player type \n"	+
-				"[1] Warrior-high health low spell power medium attack damage medium attack speed \n" +
-				"[2] Mage-low health high spell power low attack damage low attack speed");
+		Utilities.p(Option.getDialogue(PLAYER_TYPE));
+		List<String> options = Option.getOptions(PLAYER_TYPE);
+		for(int i=0;i<options.size();i++){
+			Utilities.p("["+(i+1)+"]"+options.get(i));
+		}
 		Player player = null;
 
 		while (player == null) {
@@ -119,13 +120,16 @@ Utilities.p("How to attack? 	") ;
 		}
 	}
 	private static Character selectTarget(Scanner sc, Character character) {
-		Utilities.p("Who to attack?   \n" +
-				"[1] skeleton0");
+		Utilities.p(Option.getDialogue(TARGET));
+		List<String> options = Option.getOptions(TARGET);
+		for(int i=0;i<options.size();i++){
+			Utilities.p("["+(i+1)+"]"+options.get(i));
+		}
 		while (character == null) {
 
 
-			String target = sc.next();
-			character = CharacterFactory.getEnemy(target);
+			int target = sc.nextInt();
+			character = CharacterFactory.getEnemy(target-1);
 			if (character==null) {
 				Utilities.p("invalid target");
 			}

@@ -2,20 +2,24 @@ package battlePackage;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CharacterFactory {
 	
 	private static boolean printOnly=false;
 
-    private static Map<String, Enemy> characters = new HashMap<>();
-
-    public static void setCharacters(Map<String, Enemy> enemy) {
+    private static List< Enemy> characters = new ArrayList<>();
+public static List<Enemy> getCharacters(){
+	return characters;
+}
+    public static void setCharacters(List<Enemy> enemy) {
         CharacterFactory.characters = enemy;
     }
 
-    public static Enemy getEnemy(String name) {
+    public static Enemy getEnemy(int name) {
         Enemy enemy = characters.get(name);
         return enemy;
 
