@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Option {
+
 private static Map<String, String> dialogues=new HashMap<>();
 private static Map<String, List<String>> options=new HashMap<>();
 
@@ -14,15 +15,19 @@ public static void fillDialogues(){
 	dialogues.put("target", "Who to attack?");
 	dialogues.put("playerType", "Choose your player type");
 	dialogues.put("nextAction", "What do you do?");
-
+	dialogues.put("ability", "Choose ability");
 
 }
 
 public static void fillOptions(){
+
+
  List<String> optionsList=new ArrayList<>();
  optionsList.add("Warrior-high health low spell power medium attack damage medium attack speed");
  optionsList.add("Mage-low health high spell power low attack damage low attack speed");
 	options.put("playerType", optionsList) ;
+
+
 	optionsList=new ArrayList<>();
 	options.put("nextAction", optionsList) ;
 	optionsList=new ArrayList<>();
@@ -32,10 +37,16 @@ public static void fillOptions(){
 		
 	}
 	options.put("target",optionsList);
+
+
 	optionsList=new ArrayList<>();
 	optionsList.add("attack");
 	optionsList.add("run");
 	options.put("opening",optionsList);
+
+
+	optionsList=new ArrayList<>();
+
 
 }
 	public static String getDialogue(String topic){

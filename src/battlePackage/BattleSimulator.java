@@ -12,35 +12,44 @@ public class BattleSimulator {
 
 		List<Player> players = new ArrayList<>();
 		List<Enemy> enemies = new ArrayList<>();
-		 
+
 		enemies.add(new Skeleton("skeleton0"));
 		enemies.add(new Skeleton("bob"));
 		enemies.add(new Skeleton("kuku"));
 		CharacterFactory.setCharacters(enemies);
+		//create the 2 groups of fighters
 		if (args!=null && args.length>0) {
 			if (args[0].equalsIgnoreCase("printonly"))
 				CharacterFactory.setPrintOnly(true);
 			if (args.length>1 && args[1].equalsIgnoreCase("dev"))
 				Utilities.setDev(true);
 		}
-		
+		//dev mode to print instead of act
 	Option.fillDialogues();
 	Option.fillOptions();
+
 		Scanner sc = new Scanner(System.in);
 
-Utilities.p("Enter your name");
-		String name=sc.next();
 
-		createCharacter(players, sc,name);
+
+
+
+
+Utilities.p("Enter your name");   String name=sc.next();
+
+        createCharacter(players, sc,name);
+
+
 		Player main = players.get(0);
-		choose(sc,"opening");
+		int choice=choose(sc,"opening");
 
-		int nextAction=sc.nextInt();
+
 			boolean ok;
+			//do once, repeat if you typed something that doesn't fir the syntax
 			do{
 
 				ok = true;
-				switch (nextAction) {
+				switch (choice) {
 
 					case 1:
 Utilities.p("How to attack? 	") ;
@@ -51,7 +60,7 @@ Utilities.p("How to attack? 	") ;
 
 
 
-						
+
 
 						Character character = null;
 					    character = choiceCharacter( sc,  character,TARGET);
