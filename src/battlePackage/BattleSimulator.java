@@ -28,13 +28,12 @@ public class BattleSimulator {
 		
 	Option.fillDialogues();
 	Option.fillOptions();
-	choice(
 		Scanner sc = new Scanner(System.in);
 
-
+Utilities.p("Enter your name");
 		String name=sc.next();
 
-		createCharacter(players, sc,PLAYER_TYPE,name);
+		createCharacter(players, sc,name);
 		Player main = players.get(0);
 			Utilities.p();
 			Utilities.p("A skeleton appears! What do you do?");
@@ -93,7 +92,7 @@ Utilities.p("How to attack? 	") ;
 
 
 private static int choice(Scanner sc, String topic) {
-	Utilities.p("Enter your name");
+
 
 	int choice = sc.nextInt();
 	Utilities.p(Option.getDialogue(topic));
@@ -131,8 +130,8 @@ private static int choice(Scanner sc, String topic) {
 	}
 
 
-	private static void createCharacter(List<Player> players, Scanner sc,String topic,String name) {
-
+	private static void createCharacter(List<Player> players, Scanner sc,String name) {
+choice(sc,PLAYER_TYPE);
 		Player player = null;
 
 		while (player == null) {
