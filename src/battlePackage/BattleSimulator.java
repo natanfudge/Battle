@@ -52,10 +52,8 @@ Utilities.p("Enter your name");   String name=sc.next();
 				switch (choice) {
 
 					case 1:
-Utilities.p("How to attack? 	") ;
-						for (Ability ab:main.getAbilities()) {
-							Utilities.p("    "+ab);
-						}
+
+int ability= chooseAbility(sc,main);
 
 
 
@@ -132,7 +130,16 @@ private static int choose(Scanner sc, String topic) {
 		List<String> options = Option.getOptions(topic);
 		for(int i=0;i<options.size();i++){
 			Utilities.p("["+(i+1)+"]"+options.get(i));
+
 		}
+	}private static int chooseAbility(Scanner sc,Player player) {
+		Utilities.p(Option.getDialogue("ability"));
+		List<Ability> options = player.getAbilities();
+		for(int i=0;i<options.size();i++){
+			Utilities.p("["+(i+1)+"]"+options.get(i));
+		}
+		int choice=sc.nextInt();
+		return choice;
 	}
 
 

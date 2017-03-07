@@ -45,7 +45,6 @@ public static void fillOptions(){
 	options.put("opening",optionsList);
 
 
-	optionsList=new ArrayList<>();
 
 
 }

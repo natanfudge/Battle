@@ -52,11 +52,7 @@ public abstract class Player implements Character {
 		this.name = name;
 	}
 
-	public PlayerType getPlayerType() {
-		return playerType;
-	}   public void setPlayerType(PlayerType playerType) {
-		this.playerType = playerType;
-	}
+	public PlayerType getPlayerType() {return playerType;}   public void setPlayerType(PlayerType playerType) {this.playerType = playerType;}
 
 	public float getAttackDelay() {
 		return attackDelay;
