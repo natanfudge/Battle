@@ -25,15 +25,14 @@ public static List<Enemy> getCharacters(){
 
     }
 
-    public static Player createCharacter(String name, String type) {
+    public static Player createCharacter(String name, int type) {
 
         Player character = null;
-        type = type.toLowerCase();
-        switch (type) {
-            case "1":
+         switch (type) {
+            case 1:
                 character = new Warrior(1000, 50, 100, 3.5f, 20, name);
                 break;
-            case "2":
+            case 2:
                 character = new Mage(400, 600, 20, 2.5f, 200, name);
                 break;
 

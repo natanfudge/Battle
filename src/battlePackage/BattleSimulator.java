@@ -94,12 +94,12 @@ Utilities.p("How to attack? 	") ;
 private static int choice(Scanner sc, String topic) {
 
 
-	int choice = sc.nextInt();
 	Utilities.p(Option.getDialogue(topic));
 	List<String> options = Option.getOptions(topic);
 	for(int i=0;i<options.size();i++){
 		Utilities.p("["+(i+1)+"]"+options.get(i));
 	}
+	int choice = sc.nextInt();
 	return choice;
 }
 
@@ -131,11 +131,11 @@ private static int choice(Scanner sc, String topic) {
 
 
 	private static void createCharacter(List<Player> players, Scanner sc,String name) {
-choice(sc,PLAYER_TYPE);
+
 		Player player = null;
 
 		while (player == null) {
-			String type = sc.next();
+			int type = choice(sc,PLAYER_TYPE);;
 
 			player = CharacterFactory.createCharacter( name, type);
 			if (player != null) {
