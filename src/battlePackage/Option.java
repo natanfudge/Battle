@@ -10,10 +10,12 @@ private static Map<String, String> dialogues=new HashMap<>();
 private static Map<String, List<String>> options=new HashMap<>();
 
 public static void fillDialogues(){
+	dialogues.put("opening","A skeleton appears! What do you do?");
 	dialogues.put("target", "Who to attack?");
 	dialogues.put("playerType", "Choose your player type");
 	dialogues.put("nextAction", "What do you do?");
-	
+
+
 }
 
 public static void fillOptions(){
@@ -22,8 +24,6 @@ public static void fillOptions(){
  optionsList.add("Mage-low health high spell power low attack damage low attack speed");
 	options.put("playerType", optionsList) ;
 	optionsList=new ArrayList<>();
-	 optionsList.add("");
-	 optionsList.add("");
 	options.put("nextAction", optionsList) ;
 	optionsList=new ArrayList<>();
 	for(Enemy enemy:CharacterFactory.getCharacters()){
@@ -32,6 +32,11 @@ public static void fillOptions(){
 		
 	}
 	options.put("target",optionsList);
+	optionsList=new ArrayList<>();
+	optionsList.add("attack");
+	optionsList.add("run");
+	options.put("opening",optionsList);
+
 }
 	public static String getDialogue(String topic){
  return dialogues.get(topic);

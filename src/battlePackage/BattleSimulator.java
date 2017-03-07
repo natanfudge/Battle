@@ -28,13 +28,14 @@ public class BattleSimulator {
 		
 	Option.fillDialogues();
 	Option.fillOptions();
+	choice(
 		Scanner sc = new Scanner(System.in);
 
 
-		
+		String name=sc.next();
 
-		createCharacter(players, sc);
-			Player main = players.get(0);
+		createCharacter(players, sc,PLAYER_TYPE,name);
+		Player main = players.get(0);
 			Utilities.p();
 			Utilities.p("A skeleton appears! What do you do?");
 			Utilities.p("[1] attack \n"+
@@ -57,7 +58,7 @@ Utilities.p("How to attack? 	") ;
 						
 
 						Character character = null;
-					    character = selectTarget(sc, character);
+					    character = choiceCharacter( sc,  character,TARGET);
 						main.attack(character);
 						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
 
@@ -79,52 +80,34 @@ Utilities.p("How to attack? 	") ;
 
 			sc.close();
 		
-	/*	Thread f1 = new Thread(new Action("attack", players.get(0), skeletons.get(0)));
-		Thread f2 = new Thread(new Ticker(6, f1));
-		f1.start();
-		f2.start();
 
-		try {
-			Thread.sleep(1000000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-
-	}
-*/
 
 
 	}
 
 
-	private static void createCharacter(List<Player> players, Scanner sc) {
-		Utilities.p("Enter your name");
-		String name = sc.next();
-		Utilities.p(Option.getDialogue(PLAYER_TYPE));
-		List<String> options = Option.getOptions(PLAYER_TYPE);
-		for(int i=0;i<options.size();i++){
-			Utilities.p("["+(i+1)+"]"+options.get(i));
-		}
-		Player player = null;
 
-		while (player == null) {
-			String type = sc.next();
 
-			player = CharacterFactory.createCharacter( name, type);
-			if (player != null) {
-				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
 
-				players.add(player);
-			}
-		}
+
+
+
+private static int choice(Scanner sc, String topic) {
+	Utilities.p("Enter your name");
+
+	int choice = sc.nextInt();
+	Utilities.p(Option.getDialogue(topic));
+	List<String> options = Option.getOptions(topic);
+	for(int i=0;i<options.size();i++){
+		Utilities.p("["+(i+1)+"]"+options.get(i));
 	}
-	private static Character selectTarget(Scanner sc, Character character) {
-		Utilities.p(Option.getDialogue(TARGET));
-		List<String> options = Option.getOptions(TARGET);
-		for(int i=0;i<options.size();i++){
-			Utilities.p("["+(i+1)+"]"+options.get(i));
-		}
+	return choice;
+}
+
+
+
+	private static Character choiceCharacter(Scanner sc, Character character,String topic) {
+		choiceCharacter(topic);
 		while (character == null) {
 
 
@@ -139,4 +122,53 @@ Utilities.p("How to attack? 	") ;
 		return character;
 	}
 
+	private static void choiceCharacter(String topic) {
+		Utilities.p(Option.getDialogue(topic));
+		List<String> options = Option.getOptions(topic);
+		for(int i=0;i<options.size();i++){
+			Utilities.p("["+(i+1)+"]"+options.get(i));
+		}
+	}
+
+
+	private static void createCharacter(List<Player> players, Scanner sc,String topic,String name) {
+
+		Player player = null;
+
+		while (player == null) {
+			String type = sc.next();
+
+			player = CharacterFactory.createCharacter( name, type);
+			if (player != null) {
+				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
+
+				players.add(player);
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+/*	Thread f1 = new Thread(new Action("attack", players.get(0), skeletons.get(0)));
+		Thread f2 = new Thread(new Ticker(6, f1));
+		f1.start();
+		f2.start();
+
+		try {
+			Thread.sleep(1000000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+*/
 }
