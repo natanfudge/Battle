@@ -1,9 +1,7 @@
 package battlePackage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class BattleSimulator {
@@ -35,17 +33,16 @@ Utilities.p("Enter your name");
 
 		createCharacter(players, sc,name);
 		Player main = players.get(0);
-			Utilities.p();
-			Utilities.p("A skeleton appears! What do you do?");
-			Utilities.p("[1] attack \n"+
-					"[2] run");
+		choose(sc,"opening");
+
+		int nextAction=sc.nextInt();
 			boolean ok;
 			do{
-				String nextAction = sc.next();
+
 				ok = true;
 				switch (nextAction) {
 
-					case "1":
+					case 1:
 Utilities.p("How to attack? 	") ;
 						for (Ability ab:main.getAbilities()) {
 							Utilities.p("    "+ab);
@@ -62,7 +59,7 @@ Utilities.p("How to attack? 	") ;
 						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
 
 						break;
-					case "2":
+					case 2:
 						Utilities.p("Coward");
 						sc.close();
 						break;
@@ -91,7 +88,7 @@ Utilities.p("How to attack? 	") ;
 
 
 
-private static int choice(Scanner sc, String topic) {
+private static int choose(Scanner sc, String topic) {
 
 
 	Utilities.p(Option.getDialogue(topic));
@@ -106,7 +103,7 @@ private static int choice(Scanner sc, String topic) {
 
 
 	private static Character choiceCharacter(Scanner sc, Character character,String topic) {
-		choiceCharacter(topic);
+		chooseCharacter(topic);
 		while (character == null) {
 
 
@@ -121,7 +118,7 @@ private static int choice(Scanner sc, String topic) {
 		return character;
 	}
 
-	private static void choiceCharacter(String topic) {
+	private static void chooseCharacter(String topic) {
 		Utilities.p(Option.getDialogue(topic));
 		List<String> options = Option.getOptions(topic);
 		for(int i=0;i<options.size();i++){
@@ -135,7 +132,7 @@ private static int choice(Scanner sc, String topic) {
 		Player player = null;
 
 		while (player == null) {
-			int type = choice(sc,PLAYER_TYPE);;
+			int type = choose(sc,PLAYER_TYPE);;
 
 			player = CharacterFactory.createCharacter( name, type);
 			if (player != null) {
