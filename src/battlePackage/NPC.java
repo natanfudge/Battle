@@ -80,7 +80,7 @@ public abstract class NPC implements Character {
 		this.name = name;
 	}
 
-	public void normaAttack(Character character){
+	public void normalAttack(Character character){
 		character.attacked(getAttackDamage());
 	}
 	public void attacked(int attackDamage){

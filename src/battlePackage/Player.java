@@ -90,8 +90,8 @@ public abstract class Player implements Character {
 
     }
 
-	@Override
-	public void normaAttack(Character character) {
+
+	public void normalAttack(Character character) {
 		if (isPrintOnly()) {
 			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
 		} else
@@ -116,7 +116,18 @@ public abstract class Player implements Character {
 
 
     public abstract void addAbilities();
-	
+
+	public void useAbility(Character character, int abilityPosition) {
+		List<Ability> abilities=getAbilities();
+		Ability ability=abilities.get(abilityPosition-1);
+		switch(ability){
+			case normal:
+				normalAttack(character);
+				break;
+			case magicMissle:
+				magicMissle(character);
+		}
+	}
 }
 
 

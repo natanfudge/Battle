@@ -38,7 +38,7 @@ public class ActionDuration implements Runnable {
 			while (running) {
 					switch (specificAction) {
 					case "attack":
-						targeter.normaAttack(target);
+						targeter.normalAttack(target);
 						System.out.println(target.getHealth());
 							Thread.sleep((long) (targeter.getAttackDelay()*1000));
 						

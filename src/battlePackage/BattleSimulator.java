@@ -53,9 +53,7 @@ public class BattleSimulator {
 
 int ability= chooseAbility(sc,main);
 
-					public static void useAbility(Character character,int ability){
-						abilities.get(ability-1);
-		}
+
 
 
 
@@ -96,14 +94,20 @@ int ability= chooseAbility(sc,main);
 
 
 private static int choose(Scanner sc, String topic) {
-
-
+boolean ok=false;
+int choice=0;
 	Utilities.p(Option.getDialogue(topic));
 	List<String> options = Option.getOptions(topic);
 	for(int i=0;i<options.size();i++){
 		Utilities.p("["+(i+1)+"]"+options.get(i));
 	}
-	int choice = sc.nextInt();
+while(!ok){
+
+
+	 choice = sc.nextInt();
+	ok=choice<=options.size();
+}
+
 	return choice;
 }
 
