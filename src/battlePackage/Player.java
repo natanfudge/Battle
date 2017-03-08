@@ -75,13 +75,7 @@ public abstract class Player implements Character {
 	public void setAbilities(List<Ability> abilities) {
 		this.abilities = abilities;
 	}
-	@Override
-	public void attack(Character character) {
-		if (isPrintOnly()) {
-			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
-		} else 
-			character.attacked(getAttackDamage());
-	}
+
 
     public Player(int health, int mana, int attackDamage,float attackSpeed,int spellDamage, String name) {
         super();
@@ -96,8 +90,16 @@ public abstract class Player implements Character {
 
     }
 
-
-
+	@Override
+	public void normaAttack(Character character) {
+		if (isPrintOnly()) {
+			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
+		} else
+			character.attacked(getAttackDamage());
+	}
+	public void magicMissle(Character character) {
+			character.attacked(getSpellDamage());
+	}
     @Override
     public void attacked(int afterMathEffect) {
         setHealth(getHealth() - afterMathEffect);

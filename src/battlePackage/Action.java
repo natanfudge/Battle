@@ -38,7 +38,7 @@ public class Action implements Runnable {
 			while (running) {
 					switch (specificAction) {
 					case "attack":
-						targeter.attack(target);
+						targeter.normaAttack(target);
 						System.out.println(target.getHealth());
 							Thread.sleep((long) (targeter.getAttackDelay()*1000));
 						

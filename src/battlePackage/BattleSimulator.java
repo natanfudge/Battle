@@ -35,34 +35,34 @@ public class BattleSimulator {
 
 
 
-Utilities.p("Enter your name");   String name=sc.next();
+        Utilities.p("Enter your name");   String name=sc.next();
 
-        createCharacter(players, sc,name);
+        createCharacter(players, sc,name);    Player main = players.get(0);
 
-
-		Player main = players.get(0);
 		int choice=choose(sc,"opening");
 
 
-			boolean ok;
-			//do once, repeat if you typed something that doesn't fir the syntax
-			do{
 
-				ok = true;
+
+
+
+
 				switch (choice) {
 
 					case 1:
 
 int ability= chooseAbility(sc,main);
 
-
+					public static void useAbility(Character character,int ability){
+						abilities.get(ability-1);
+		}
 
 
 
 
 						Character character = null;
 					    character = choiceCharacter( sc,  character,TARGET);
-						main.attack(character);
+						main.useAbility(character,ability);
 						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
 
 						break;
@@ -72,11 +72,11 @@ int ability= chooseAbility(sc,main);
 						break;
 					default:
 						Utilities.p("What?");
-						ok = false;
+
 						break;
 				}
 
-			}while(!ok);
+
 
 
 

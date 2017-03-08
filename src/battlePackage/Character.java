@@ -15,7 +15,7 @@ public interface Character {
 
 	String getName();
 	
-	void attack(Character character);
+	void normaAttack(Character character);
 	
 	void attacked(int attackDamage);
 
