@@ -1,11 +1,13 @@
 package battlePackage;
 
-public abstract class Weapon extends Equipment {
+abstract class Weapon extends Equipment {
+	
+
 	private int attackDamage;
 	private float BAT;
 	private int spellDamage;
 
-	public int getAttackDamage() {
+    public int getAttackDamage() {
 		return attackDamage;
 	}
 
@@ -28,5 +30,14 @@ public abstract class Weapon extends Equipment {
 	public void setSpellDamage(int spellDamage) {
 		this.spellDamage = spellDamage;
 	}
+	
+	
+	
 
+	public Weapon(int durability, String name, Enchantment enchantment, int attackDamage, float bAT, int spellDamage) {
+		super(durability, name, enchantment);
+		this.attackDamage = attackDamage;
+		BAT = bAT;
+		this.spellDamage = spellDamage;
+	}
 }
