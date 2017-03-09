@@ -1,8 +1,6 @@
 package battlePackage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BattleSimulator {
 
@@ -17,14 +15,60 @@ public class BattleSimulator {
 		enemies.add(new Skeleton("bob"));
 		enemies.add(new Skeleton("kuku"));
 		CharacterFactory.setCharacters(enemies);
-		//create the 2 groups of fighters
+
+
+
+
+		Map<String,Map<String,List<Equipment>>>equipment = new HashMap();
+
+
+
+
+		Map<String,List<Equipment>> weapons=new HashMap<>();
+		equipment.put("weapons", weapons);
+
+		List<Equipment>swords=new ArrayList<>();
+		weapons.put("swords",swords);
+
+		List<Equipment>wands=new ArrayList<>();
+		weapons.put("wands",wands);
+
+
+
+		Map<String,List<Equipment>> armor=new HashMap<>();
+		equipment.put("armor", armor);
+
+		List<Equipment>shields=new ArrayList<>();
+		armor.put("shields",shields);
+
+		List<Equipment>helmets=new ArrayList<>();
+		armor.put("helmets",helmets);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		if (args!=null && args.length>0) {
 			if (args[0].equalsIgnoreCase("printonly"))
 				CharacterFactory.setPrintOnly(true);
 			if (args.length>1 && args[1].equalsIgnoreCase("dev"))
 				Utilities.setDev(true);
 		}
-		//dev mode to print instead of act
+
 	Option.fillDialogues();
 	Option.fillOptions();
 
@@ -136,7 +180,12 @@ while(!ok){
 			Utilities.p("["+(i+1)+"]"+options.get(i));
 
 		}
-	}private static int chooseAbility(Scanner sc,Player player) {
+	}
+
+
+
+
+	private static int chooseAbility(Scanner sc,Player player) {
 		Utilities.p(Option.getDialogue("ability"));
 		List<Ability> options = player.getAbilities();
 		for(int i=0;i<options.size();i++){

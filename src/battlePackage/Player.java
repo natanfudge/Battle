@@ -128,6 +128,19 @@ public abstract class Player implements Character {
 				magicMissle(character);
 		}
 	}
+
+
+	public void useAbilityDuration(Character character, int abilityPosition) {
+		List<Ability> abilities=getAbilities();
+		Ability ability=abilities.get(abilityPosition-1);
+		switch(ability){
+			case normal:
+				normalAttack(character);
+				break;
+			case magicMissle:
+				magicMissle(character);
+		}
+	}
 }
 
 

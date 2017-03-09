@@ -1,8 +1,8 @@
 package battlePackage;
 
-abstract class Equipment implements Item {
+abstract class Equipment {
 	private int durability;
-	private int name;
+	private String name;
 	private Enchantment enchantment;
 	private SpecialEffect specialEffect;
 	private Active active;
@@ -15,11 +15,11 @@ abstract class Equipment implements Item {
 		this.durability = durability;
 	}
 
-	public int getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -47,4 +47,9 @@ abstract class Equipment implements Item {
 		this.active = active;
 	}
 
+	public Equipment(int durability, String name, Enchantment enchantment) {
+		this.durability = durability;
+		this.name = name;
+		this.enchantment = enchantment;
+	}
 }

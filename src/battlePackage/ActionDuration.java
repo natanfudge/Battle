@@ -1,5 +1,7 @@
 package battlePackage;
 
+import java.util.List;
+
 public class ActionDuration implements Runnable {
 	
 	String specificAction;
@@ -12,12 +14,9 @@ public class ActionDuration implements Runnable {
 
 
 
-	public ActionDuration(String specificAction, Character targeter, Character target) {
-		super();
-		this.specificAction = specificAction;
-		this.targeter = targeter;
-		this.target = target;
-	}
+
+
+
 
 
   public void stop() {
