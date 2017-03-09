@@ -31,7 +31,7 @@ public class BattleSimulator {
 		List<Equipment>swords=new ArrayList<>();
 		weapons.put("swords",swords);
 
-		swords.add(new Sword(100, "Sharpy", Enchantment.POWER, 150, 1.2)
+		swords.add(new Sword(100, "Sharpy", Enchantment.POWER, 150, 1.2f));
 		List<Equipment>wands=new ArrayList<>();
 		weapons.put("wands",wands);
 
@@ -79,7 +79,7 @@ public class BattleSimulator {
 
 		Scanner sc = new Scanner(System.in);
 
-
+		Utilities.p(swords.get(0).getAttackDamage);
 
 
 
