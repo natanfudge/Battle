@@ -27,20 +27,25 @@ public class BattleSimulator {
 		Map<String,List<Equipment>> weapons=new HashMap<>();
 		equipment.put("weapons", weapons);
 
+		
 		List<Equipment>swords=new ArrayList<>();
 		weapons.put("swords",swords);
 
+		swords.add(new Sword(100, "Sharpy", Enchantment.POWER, 150, 1.2)
 		List<Equipment>wands=new ArrayList<>();
 		weapons.put("wands",wands);
 
 
+		
 
 		Map<String,List<Equipment>> armor=new HashMap<>();
 		equipment.put("armor", armor);
 
+		
 		List<Equipment>shields=new ArrayList<>();
 		armor.put("shields",shields);
 
+		
 		List<Equipment>helmets=new ArrayList<>();
 		armor.put("helmets",helmets);
 

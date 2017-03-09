@@ -34,10 +34,10 @@ abstract class Weapon extends Equipment {
 	
 	
 
-	public Weapon(int durability, String name, Enchantment enchantment, int attackDamage, float bAT, int spellDamage) {
+	public Weapon(int durability, String name, Enchantment enchantment, int attackDamage, float bAT) {
 		super(durability, name, enchantment);
 		this.attackDamage = attackDamage;
 		BAT = bAT;
-		this.spellDamage = spellDamage;
+		
 	}
 }

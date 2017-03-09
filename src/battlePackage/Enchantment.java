@@ -1,5 +1,5 @@
 package battlePackage;
 
 public enum Enchantment {
-ofPower,ofSpeed,ofKnowledge,ofResistance,none;
+POWER,SPEED,KNOWLEDGE,RESISTANCE,NONE;
 }
