@@ -16,7 +16,9 @@ public abstract class Player implements Character {
 	private float attackSpeed;
 	private float attackDelay;
 	private boolean printOnly;
+
 	private List<Ability> abilities=new ArrayList<>();
+    private List<Equipment>equipment=new ArrayList<>();
 
 	public int getHealth() {
 		return health;
@@ -90,16 +92,37 @@ public abstract class Player implements Character {
 
     }
 
+public int getTAD(){
+		int attackDamage=getAttackDamage();
+		for(Equipment eqp:getEquipment()){
+			if(eqp instanceof Weapon||eqp instanceof Wand) {
+				attackDamage += ((Weapon) eqp).getAttackDamage();
+			}
+
+
+		}
+		return attackDamage;
+}
+public int getTSD(){
+	int spellDamage=getSpellDamage();
+	for(Equipment eqp:getEquipment()){
+		if(eqp instanceof Wand){
+			spellDamage+=((Wand)eqp).getSpellDamage();
+		}
+	}
+	return spellDamage;
+}
 
 	public void normalAttack(Character character) {
 		if (isPrintOnly()) {
-			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getAttackDamage());
+			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getTAD());
 		} else
-			character.attacked(getAttackDamage());
+			character.attacked(getTAD());
 	}
 	public void magicMissle(Character character) {
-			character.attacked(getSpellDamage());
+			character.attacked(getTSD());
 	}
+
     @Override
     public void attacked(int afterMathEffect) {
         setHealth(getHealth() - afterMathEffect);
@@ -140,6 +163,23 @@ public abstract class Player implements Character {
 			case magicMissle:
 				magicMissle(character);
 		}
+	}
+
+	public List<Equipment> getEquipment(){
+		return equipment;
+	}
+
+	public void addEquipment(Equipment equipment){
+		if (getEquipment().size()<5) {
+			getEquipment().add(equipment);
+		}
+		else{
+			Utilities.p("Too many items");
+		}
+	}
+	public void removeEquipment(Equipment equipment){
+		getEquipment().remove(equipment);
+
 	}
 }
 

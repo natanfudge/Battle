@@ -16,6 +16,10 @@ public static void fillDialogues(){
 	dialogues.put("playerType", "Choose your player type");
 	dialogues.put("nextAction", "What do you do?");
 	dialogues.put("ability", "Choose ability");
+	dialogues.put("chooseWeapon", "Now that you have defeated your first foe, choose a weapon to continue.");
+
+
+
 
 }
 
@@ -44,8 +48,20 @@ public static void fillOptions(){
 	optionsList.add("run");
 	options.put("opening",optionsList);
 
+    optionsList=new ArrayList<>();
+	optionsList.add("Sword");
+	optionsList.add("Wand");
+    options.put("chooseWeapon",optionsList);
 
+optionsList=new ArrayList<>();
+optionsList.add("Sharpy");
+	optionsList.add("Sword1");
+options.put("chooseSword",optionsList);
 
+	optionsList=new ArrayList<>();
+	optionsList.add("Wand1");
+	optionsList.add("Wand2");
+	options.put("chooseWand",optionsList);
 
 }
 	public static String getDialogue(String topic){
@@ -53,6 +69,14 @@ public static void fillOptions(){
 	
 }
 public static List <String> getOptions(String topic){
-return options.get(topic);	
+return options.get(topic);
 }
+	public static List<String> chooseWeapon(Map<String,Equipment> equipment){
+List<String>weapons=new ArrayList<>();
+for(Map.Entry<String,Equipment> eqp:equipment.entrySet()) {
+	weapons.add(eqp.getKey());
+}
+	return weapons;
+
+	}
 }

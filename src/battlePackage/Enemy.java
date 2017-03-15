@@ -1,9 +1,9 @@
 package battlePackage;
 
 public abstract class Enemy extends NPC {
-	
 
-	
+
+
 	public Enemy(String name) {
 		super(name);
 	}

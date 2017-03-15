@@ -9,12 +9,13 @@ public class BattleSimulator {
 	public static void main(String[] args) {
 
 		List<Player> players = new ArrayList<>();
-		List<Enemy> enemies = new ArrayList<>();
-
-		enemies.add(new Skeleton("skeleton0"));
-		enemies.add(new Skeleton("bob"));
-		enemies.add(new Skeleton("kuku"));
-		CharacterFactory.setCharacters(enemies);
+		List<Enemy> enemies1 = new ArrayList<>();
+		enemies1.add(new Skeleton("skeleton0"));
+		List<Enemy> enemies2 = new ArrayList<>();
+		enemies2.add(new Skeleton("zombie0"));
+	//	enemies.add(new Skeleton("bob"));
+	//	enemies.add(new Skeleton("kuku"));
+		CharacterFactory.setCharacters(enemies1);
 
 
 
@@ -27,25 +28,28 @@ public class BattleSimulator {
 		Map<String,List<Equipment>> weapons=new HashMap<>();
 		equipment.put("weapons", weapons);
 
-		
+
 		List<Equipment>swords=new ArrayList<>();
 		weapons.put("swords",swords);
 
 		swords.add(new Sword(100, "Sharpy", Enchantment.POWER, 150, 1.2f));
+		swords.add(new Sword(100, "Sword1", Enchantment.NONE, 70, 1.8f));
+
 		List<Equipment>wands=new ArrayList<>();
 		weapons.put("wands",wands);
+		wands.add(new Wand(80, "Wand1", Enchantment.KNOWLEDGE, 30,200, 2.2f));
+		wands.add(new Wand(80, "Wand2", Enchantment.NONE, 40,150, 1.8f));
 
 
-		
 
 		Map<String,List<Equipment>> armor=new HashMap<>();
 		equipment.put("armor", armor);
 
-		
+
 		List<Equipment>shields=new ArrayList<>();
 		armor.put("shields",shields);
 
-		
+
 		List<Equipment>helmets=new ArrayList<>();
 		armor.put("helmets",helmets);
 
@@ -79,7 +83,7 @@ public class BattleSimulator {
 
 		Scanner sc = new Scanner(System.in);
 
-		Utilities.p(swords.get(0).getAttackDamage);
+		Utilities.p(""+((Weapon)swords.get(0)).getAttackDamage());
 
 
 
@@ -98,30 +102,40 @@ public class BattleSimulator {
 
 				switch (choice) {
 
-					case 1:
+                    case 1:
 
-int ability= chooseAbility(sc,main);
+                        while (enemies1.size()>0) {
 
-
-
-
+							int ability = chooseAbility(sc, main);
 
 
-						Character character = null;
-					    character = choiceCharacter( sc,  character,TARGET);
-						main.useAbility(character,ability);
-						Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
+                            Character character = null;
+                            character = choiceCharacter(sc, character, TARGET);
+                            main.useAbility(character, ability);
+                            Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
+							updateEnemyList(enemies1);
+                        }
+                        int choiceWeapon=choose(sc,"chooseWeapon");
+                        switch(choiceWeapon){
+							case 1:
+								int choiceSword=choose(sc,"chooseSword");
+								break;
 
-						break;
-					case 2:
-						Utilities.p("Coward");
-						sc.close();
-						break;
-					default:
-						Utilities.p("What?");
+							case 2:
+								int choiceWand=choose(sc,"chooseWand");
 
-						break;
-				}
+
+						}
+                            break;
+                            case 2:
+                                Utilities.p("Coward");
+                                sc.close();
+                                break;
+                            default:
+                                Utilities.p("What?");
+
+                                break;
+                        }
 
 
 
@@ -129,37 +143,44 @@ int ability= chooseAbility(sc,main);
 
 
 			sc.close();
-		
+
 
 
 
 	}
 
+	private static void updateEnemyList(List<Enemy> enemies1) {
+		for (int i=0;i<enemies1.size();i++){
+            if (enemies1.get(i).getHealth()<=0){
+enemies1.remove(i);
 
+            }
 
-
-
-
-
-
-private static int choose(Scanner sc, String topic) {
-boolean ok=false;
-int choice=0;
-	Utilities.p(Option.getDialogue(topic));
-	List<String> options = Option.getOptions(topic);
-	for(int i=0;i<options.size();i++){
-		Utilities.p("["+(i+1)+"]"+options.get(i));
+        }
 	}
-while(!ok){
 
 
-	 choice = sc.nextInt();
-	ok=choice<=options.size();
-}
 
-	return choice;
-}
 
+    private static int choose(Scanner sc, String topic) {
+
+		boolean ok = false;
+
+		int choice = 0;
+		Utilities.p(Option.getDialogue(topic));
+		List<String> options = Option.getOptions(topic);
+		for (int i = 0; i < options.size(); i++) {
+			Utilities.p("[" + (i + 1) + "]" + options.get(i));
+		}
+		while (!ok) {
+
+			choice = sc.nextInt();
+			ok = choice <= options.size();
+
+
+		}
+		return choice;
+	}
 
 
 	private static Character choiceCharacter(Scanner sc, Character character,String topic) {
@@ -179,6 +200,7 @@ while(!ok){
 	}
 
 	private static void chooseCharacter(String topic) {
+
 		Utilities.p(Option.getDialogue(topic));
 		List<String> options = Option.getOptions(topic);
 		for(int i=0;i<options.size();i++){

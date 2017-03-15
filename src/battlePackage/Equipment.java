@@ -1,5 +1,7 @@
 package battlePackage;
 
+import java.util.List;
+
 abstract class Equipment {
 	private int durability;
 	private String name;
@@ -52,4 +54,6 @@ abstract class Equipment {
 		this.name = name;
 		this.enchantment = enchantment;
 	}
+
+
 }

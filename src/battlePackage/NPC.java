@@ -1,5 +1,8 @@
 package battlePackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class NPC implements Character {
 
 	private int health;
@@ -19,7 +22,8 @@ public abstract class NPC implements Character {
 	private float attackSpeed;
 	
 	private float attackDelay = 1/getAttackSpeed();
-	
+	private List<Equipment> equipment=new ArrayList<>();
+
 	public NPC(String name) {
 		this.name=name;
 	}
@@ -87,11 +91,6 @@ public abstract class NPC implements Character {
 		setHealth(getHealth()-attackDamage);;
 	}
 
-	
-
-	
-
-	
 
 	public float getAttackSpeed() {
 		return attackSpeed;
@@ -109,7 +108,22 @@ public abstract class NPC implements Character {
 		this.attackDelay = attackDelay;
 	}
 
-	
+	public List<Equipment> getEquipment(){
+		return equipment;
+	}
+
+	public void addEquipment(Equipment equipment){
+		if (getEquipment().size()<5) {
+			getEquipment().add(equipment);
+		}
+		else{
+			Utilities.p("Too many items");
+		}
+	}
+	public void removeEquipment(Equipment equipment){
+		getEquipment().remove(equipment);
+
+	}
 	
 	
 }

@@ -1,6 +1,11 @@
 package battlePackage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Character {
+
+
 	int getHealth();
 
 	int getMana();
@@ -22,5 +27,11 @@ public interface Character {
 	float getAttackSpeed();
 	
 	float getAttackDelay();
+
+	List<Equipment> getEquipment();
+
+	void addEquipment(Equipment equipment);
+	void removeEquipment(Equipment equipment);
+
 
 }

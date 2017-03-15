@@ -5,7 +5,7 @@ abstract class Weapon extends Equipment {
 
 	private int attackDamage;
 	private float BAT;
-	private int spellDamage;
+
 
     public int getAttackDamage() {
 		return attackDamage;
@@ -23,13 +23,7 @@ abstract class Weapon extends Equipment {
 		BAT = bAT;
 	}
 
-	public int getSpellDamage() {
-		return spellDamage;
-	}
 
-	public void setSpellDamage(int spellDamage) {
-		this.spellDamage = spellDamage;
-	}
 	
 	
 	
