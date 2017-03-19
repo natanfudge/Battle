@@ -1,6 +1,6 @@
 package battlePackage;
 
-/*public class Zombie extends Enemy{
+public class Zombie extends Enemy{
 
     @Override
     public int getHealth() {
@@ -22,7 +22,9 @@ package battlePackage;
 
     }
 
-   public Zombie(String name, int attackDamage, int health) {super(name,attackDamage);}
+   public Zombie(String name, int attackDamage, int health) {
+        super(name);
+
+    }
 
 }
-*/

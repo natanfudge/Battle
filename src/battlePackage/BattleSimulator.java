@@ -9,13 +9,13 @@ public class BattleSimulator {
 	public static void main(String[] args) {
 
 		List<Player> players = new ArrayList<>();
-		List<Enemy> enemies1 = new ArrayList<>();
-		enemies1.add(new Skeleton("skeleton0"));
-		List<Enemy> enemies2 = new ArrayList<>();
-		enemies2.add(new Skeleton("zombie0"));
-	//	enemies.add(new Skeleton("bob"));
+		List<Enemy> enemies = new ArrayList<>();
+
+
+		//enemies2.add(new Skeleton("zombie0"));
+
 	//	enemies.add(new Skeleton("kuku"));
-		CharacterFactory.setCharacters(enemies1);
+		CharacterFactory.setCharacters(enemies);
 
 
 
@@ -90,7 +90,7 @@ public class BattleSimulator {
 
         Utilities.p("Enter your name");   String name=sc.next();
 
-        createCharacter(players, sc,name);    Player main = players.get(0);
+        createPlayer(players, sc,name);    Player main = players.get(0);
 
 		int choice=choose(sc,"opening");
 
@@ -103,19 +103,21 @@ public class BattleSimulator {
 				switch (choice) {
 
                     case 1:
-
-                        while (enemies1.size()>0) {
+						enemies.add(new Skeleton("skeleton0"));
+						enemies.add(new Skeleton("bob"));
+                        while (enemies.size()>0) {
 
 							int ability = chooseAbility(sc, main);
 
 
-                            Character character = null;
-                            character = choiceCharacter(sc, character, TARGET);
+
+                            Character character = chooseTarget(sc,enemies);
                             main.useAbility(character, ability);
                             Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
-							updateEnemyList(enemies1);
+							updateEnemyList(enemies);
                         }
                         int choiceWeapon=choose(sc,"chooseWeapon");
+
                         switch(choiceWeapon){
 							case 1:
 								int choiceSword=choose(sc,"chooseSword");
@@ -153,6 +155,7 @@ public class BattleSimulator {
 		for (int i=0;i<enemies1.size();i++){
             if (enemies1.get(i).getHealth()<=0){
 enemies1.remove(i);
+				Option.fillOptions();
 
             }
 
@@ -164,73 +167,78 @@ enemies1.remove(i);
 
     private static int choose(Scanner sc, String topic) {
 
-		boolean ok = false;
 
-		int choice = 0;
+
+		int choice;
 		Utilities.p(Option.getDialogue(topic));
 		List<String> options = Option.getOptions(topic);
 		for (int i = 0; i < options.size(); i++) {
 			Utilities.p("[" + (i + 1) + "]" + options.get(i));
 		}
-		while (!ok) {
 
+		do {
 			choice = sc.nextInt();
-			ok = choice <= options.size();
+		}while(choice >= options.size());
 
 
-		}
+
 		return choice;
 	}
 
 
-	private static Character choiceCharacter(Scanner sc, Character character,String topic) {
-		chooseCharacter(topic);
-		while (character == null) {
+	private static Character chooseTarget(Scanner sc,List<Enemy> enemies) {
 
 
-			int target = sc.nextInt();
-			character = CharacterFactory.getEnemy(target-1);
-			if (character==null) {
-				Utilities.p("invalid target");
+
+			for (int i = 0; i < enemies.size(); i++) {
+				Utilities.p("[" + (i + 1) + "]" + enemies.get(i).getName());
 			}
+		int target;
+			do{
+				 target = sc.nextInt() - 1;
+
+				 }while(target>enemies.size());
 
 
-		}
+
+
+
+
+			Character character=enemies.get(target);
 		return character;
-	}
-
-	private static void chooseCharacter(String topic) {
-
-		Utilities.p(Option.getDialogue(topic));
-		List<String> options = Option.getOptions(topic);
-		for(int i=0;i<options.size();i++){
-			Utilities.p("["+(i+1)+"]"+options.get(i));
 
 		}
-	}
+
 
 
 
 
 	private static int chooseAbility(Scanner sc,Player player) {
+		int choice;
 		Utilities.p(Option.getDialogue("ability"));
 		List<Ability> options = player.getAbilities();
 		for(int i=0;i<options.size();i++){
 			Utilities.p("["+(i+1)+"]"+options.get(i));
 		}
-		int choice=sc.nextInt();
+
+		do {
+			choice = sc.nextInt();
+		}while(choice <= options.size());
+
+
+
 		return choice;
 	}
 
 
-	private static void createCharacter(List<Player> players, Scanner sc,String name) {
+	private static void createPlayer(List<Player> players, Scanner sc, String name) {
 
 		Player player = null;
 
 		while (player == null) {
 			int type = choose(sc,PLAYER_TYPE);;
 
-			player = CharacterFactory.createCharacter( name, type);
+			player = CharacterFactory.createPlayer( name, type);
 			if (player != null) {
 				Utilities.p(player.getName()+" is a "+player.getClass().getSimpleName());
 

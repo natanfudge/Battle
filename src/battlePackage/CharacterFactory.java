@@ -11,21 +11,37 @@ public class CharacterFactory {
 	
 	private static boolean printOnly=false;
 
-    private static List< Enemy> characters = new ArrayList<>();
-public static List<Enemy> getCharacters(){
-	return characters;
+
+
+
+           private Map<String,List<Enemy>>enemies=new HashMap<>();
+    public Map<String,List<Enemy>>getEnemies(){
+        return enemies;
+    }
+CharacterFactory enemy=new CharacterFactory();
+    private void someMethod(){
+        Map<String,List<Enemy>> enemies = enemy.getEnemies();
+        List<Enemy>enemies1=new ArrayList<>();   enemies.put("enemies1",enemies1);
+             enemies1.add(new Skeleton("Skeleton0"));
+
+    }
+
+        //     List<Enemy>enemies1=new ArrayList<>();   enemies.put("enemies1",enemies1);
+    //        enemies1.add(new Skeleton("Skeleton0"));
+
+         //  List<Enemy>enemies2=new ArrayList<>();   enemies.put("enemies2",enemies2);
+          //  enemies2.add(new Skeleton("bob"));
+       //     enemies2.add(new Zombie("zombie0",200,1000));
+
+
+public static HashMap<String,List<Enemy>>getEnemies(int pos){
+            return ;
 }
-    public static void setCharacters(List<Enemy> enemy) {
-        CharacterFactory.characters = enemy;
-    }
 
-    public static Enemy getEnemy(int name) {
-        Enemy enemy = characters.get(name);
-        return enemy;
 
-    }
 
-    public static Player createCharacter(String name, int type) {
+
+    public static Player createPlayer(String name, int type) {
 
         Player character = null;
          switch (type) {
@@ -41,6 +57,7 @@ public static List<Enemy> getCharacters(){
         	character.setPrintOnly(printOnly);
         return character;
     }
+
     
     public static void setPrintOnly(boolean printOnly) {
     	CharacterFactory.printOnly=printOnly;
