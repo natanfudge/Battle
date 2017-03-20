@@ -34,9 +34,7 @@ CharacterFactory enemy=new CharacterFactory();
        //     enemies2.add(new Zombie("zombie0",200,1000));
 
 
-public static HashMap<String,List<Enemy>>getEnemies(int pos){
-            return ;
-}
+//public static HashMap<String,List<Enemy>>getEnemies(int pos){return ;}
 
 
 
@@ -46,7 +44,7 @@ public static HashMap<String,List<Enemy>>getEnemies(int pos){
         Player character = null;
          switch (type) {
             case 1:
-                character = new Warrior(1000, 50, 100, 3.5f, 20, name);
+                character = new Warrior(1000, 50, 1000, 3.5f, 20, name);
                 break;
             case 2:
                 character = new Mage(400, 600, 20, 2.5f, 200, name);

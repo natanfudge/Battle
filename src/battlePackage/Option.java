@@ -35,11 +35,7 @@ public static void fillOptions(){
 	optionsList=new ArrayList<>();
 	options.put("nextAction", optionsList) ;
 	optionsList=new ArrayList<>();
-	for(Enemy enemy:CharacterFactory.getCharacters()){
-		optionsList.add(enemy.getName());
-		
-		
-	}
+	//for(Enemy enemy:CharacterFactory.getCharacters()){optionsList.add(enemy.getName());}
 	options.put("target",optionsList);
 
 
@@ -53,15 +49,9 @@ public static void fillOptions(){
 	optionsList.add("Wand");
     options.put("chooseWeapon",optionsList);
 
-optionsList=new ArrayList<>();
-optionsList.add("Sharpy");
-	optionsList.add("Sword1");
-options.put("chooseSword",optionsList);
 
-	optionsList=new ArrayList<>();
-	optionsList.add("Wand1");
-	optionsList.add("Wand2");
-	options.put("chooseWand",optionsList);
+
+
 
 }
 	public static String getDialogue(String topic){

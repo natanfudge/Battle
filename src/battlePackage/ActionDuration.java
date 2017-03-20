@@ -32,7 +32,7 @@ public class ActionDuration implements Runnable {
 
 	@Override
 	public void run() {
-		while (true && target.getHealth()>0) {
+		while (target.getHealth()>0) {
 			try {
 			while (running) {
 					switch (specificAction) {

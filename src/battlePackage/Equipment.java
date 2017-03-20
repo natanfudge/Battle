@@ -55,5 +55,14 @@ abstract class Equipment {
 		this.enchantment = enchantment;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Equipment{" +
+				"durability=" + durability +
+				", name='" + name + '\'' +
+				", enchantment=" + enchantment +
+				", specialEffect=" + specialEffect +
+				", active=" + active +
+				'}';
+	}
 }
