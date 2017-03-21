@@ -8,25 +8,25 @@ public class ListFactory {
     public static int choose(Scanner sc, String topic) {
 
 
-
         int choice;
-        Utilities.p(Option.getDialogue(topic));
+        Utils.p(Option.getDialogue(topic));
         List<String> options = Option.getOptions(topic);
         for (int i = 0; i < options.size(); i++) {
-            Utilities.p("[" + (i + 1) + "]" + options.get(i));
+            Utils.p("[" + (i + 1) + "]" + options.get(i));
         }
 
 
-        while((choice=sc.nextInt()) > options.size());
-
+        while ((choice = sc.nextInt()) > options.size()) ;
 
 
         return choice;
     }
-    public static void updateEnemyList(List<Enemy> enemies1) {
-        for (int i=0;i<enemies1.size();i++){
-            if (enemies1.get(i).getHealth()<=0){
-                enemies1.remove(i);
+
+    public static void updateEnemyList(List<Enemy> enemies) {
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getHealth() <= 0) {
+                Utils.p(enemies.get(i).getName()+" has died!");
+                enemies.remove(i);
 
 
             }
@@ -35,69 +35,52 @@ public class ListFactory {
     }
 
 
-
-
-
-
-    public static Equipment choiceWeapon(Scanner sc,int type,String name,Map<String,Map<Integer,List<Equipment>>> equipment){
-        Utilities.p("Choose "+name);
+    public static Equipment choiceWeapon(Scanner sc, int type, String name, Map<String, Map<Integer, List<Equipment>>> equipment) {
+        Utils.p("Choose " + name);
 
 
         List<Equipment> weapons = equipment.get("weapons").get(type);
         for (int i = 0; i < weapons.size(); i++) {
 
-            Utilities.p("[" + (i + 1) + "]" + weapons.get(i).getName());
+            Utils.p("[" + (i + 1) + "]" + weapons.get(i).getName());
         }
         int choice;
-        while((choice=sc.nextInt()) > weapons.size());
+        while ((choice = sc.nextInt()) > weapons.size()) ;
 
 
-
-
-
-
-
-        Equipment weapon=weapons.get(choice-1);
+        Equipment weapon = weapons.get(choice - 1);
         return weapon;
 
     }
-    public static Character chooseTarget(Scanner sc,List<Enemy> enemies) {
-        Utilities.p("Choose target");
+
+    public static Character chooseTarget(Scanner sc, List<Enemy> enemies) {
+        Utils.p("Choose target");
 
 
         for (int i = 0; i < enemies.size(); i++) {
 
-            Utilities.p("[" + (i + 1) + "]" + enemies.get(i).getName());
+            Utils.p("[" + (i + 1) + "]" + enemies.get(i).getName());
         }
         int target;
-        while((target=sc.nextInt()) > enemies.size());
+        while ((target = sc.nextInt()) > enemies.size()) ;
 
 
-
-
-
-
-
-        Character character=enemies.get(target-1);
+        Character character = enemies.get(target - 1);
         return character;
 
     }
 
 
-
-
-
-    public static int chooseAbility(Scanner sc,Player player) {
+    public static int chooseAbility(Scanner sc, Player player) {
         int choice;
-        Utilities.p(Option.getDialogue("ability"));
+        Utils.p(Option.getDialogue("ability"));
         List<Ability> options = player.getAbilities();
-        for(int i=0;i<options.size();i++){
-            Utilities.p("["+(i+1)+"]"+options.get(i));
+        for (int i = 0; i < options.size(); i++) {
+            Utils.p("[" + (i + 1) + "]" + options.get(i));
         }
 
 
-        while((choice= sc.nextInt()) > options.size());
-
+        while ((choice = sc.nextInt()) > options.size()) ;
 
 
         return choice;
@@ -114,7 +97,7 @@ public class ListFactory {
 
             player = CharacterFactory.createPlayer(name, type);
             if (player != null) {
-                Utilities.p(player.getName() + " is a " + player.getClass().getSimpleName());
+                Utils.p(player.getName() + " is a " + player.getClass().getSimpleName());
 
                 players.add(player);
             }

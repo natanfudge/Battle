@@ -117,7 +117,7 @@ public abstract class NPC implements Character {
 			getEquipment().add(equipment);
 		}
 		else{
-			Utilities.p("Too many items");
+			Utils.p("Too many items");
 		}
 	}
 	public void removeEquipment(Equipment equipment){

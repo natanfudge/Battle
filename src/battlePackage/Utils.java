@@ -1,6 +1,6 @@
 package battlePackage;
 
-public class Utilities {
+public class Utils {
 	private static boolean dev;
 	
 	public static void p(String toPrint) {
@@ -22,6 +22,6 @@ public class Utilities {
 	}
 
 	public static void setDev(boolean dev) {
-		Utilities.dev=dev;
+		Utils.dev=dev;
 	}
 }

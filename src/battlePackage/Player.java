@@ -150,6 +150,8 @@ public int getTSD(){
 			case magicMissle:
 				magicMissle(character);
 		}
+		Utils.p(character.getName() + " now has " + character.getHealth() + " health");
+
 	}
 
 
@@ -174,7 +176,7 @@ public int getTSD(){
 			getEquipment().add(equipment);
 		}
 		else{
-			Utilities.p("Too many items");
+			Utils.p("Too many items");
 		}
 	}
 	public void removeEquipment(Equipment equipment){

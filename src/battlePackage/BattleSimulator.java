@@ -1,6 +1,7 @@
 package battlePackage;
 
 import java.util.*;
+import java.util.Random;
 
 import static battlePackage.ListFactory.*;
 
@@ -54,18 +55,19 @@ public class BattleSimulator {
             if (args[0].equalsIgnoreCase("printonly"))
                 CharacterFactory.setPrintOnly(true);
             if (args.length > 1 && args[1].equalsIgnoreCase("dev"))
-                Utilities.setDev(true);
+                Utils.setDev(true);
         }
 
         Option.fillDialogues();
         Option.fillOptions();
 
         Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
 
-        Utilities.p("" + ((Weapon) swords.get(0)).getAttackDamage());
+        Utils.p("" + ((Weapon) swords.get(0)).getAttackDamage());
 
 
-        Utilities.p("Enter your name");
+        Utils.p("Enter your name");
         String name = sc.next();
 
         createPlayer(players, sc, name);
@@ -77,31 +79,20 @@ public class BattleSimulator {
         switch (choice) {
 
             case 1:
-                enemies.add(new Skeleton("skeleton0"));
-                enemies.add(new Skeleton("bob"));
-                while (enemies.size() > 0) {
-
-                    int ability = chooseAbility(sc, main);
-
-
-                    Character character = chooseTarget(sc, enemies);
-                    main.useAbility(character, ability);
-                    Utilities.p(character.getName() + " now has " + character.getHealth() + " health");
-                    updateEnemyList(enemies);
-                }
-                int weaponType = choose(sc, "chooseWeapon");
+                int weaponType = battle(enemies, players, sc, rand, main, 1);
 
                 Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
                 main.addEquipment(weapon);
-                Utilities.p(weapon.toString());
+                Utils.p(weapon.toString());
+                battle(enemies, players, sc, rand, main, 2);
 
                 break;
             case 2:
-                Utilities.p("Coward");
+                Utils.p("Coward");
                 sc.close();
                 break;
             default:
-                Utilities.p("What?");
+                Utils.p("What?");
 
                 break;
         }
@@ -111,4 +102,55 @@ public class BattleSimulator {
 
     }
 
+    private static int battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, Player main, int battleNum) {
+        switch (battleNum) {
+            case 1:
+
+                enemies.add(new Skeleton("skeleton0"));
+                enemies.get(0).setHealth(100);
+                enemies.add(new Skeleton("bob"));
+                enemies.get(1).setHealth(100);
+                break;
+            case 2:
+                enemies.add(new Skeleton("Skeleton1"));
+                enemies.get(0).setAttackDamage(600);
+                enemies.get(0).setHealth(2000);
+                break;
+        }
+
+        while (enemies.size() > 0) {
+
+            int ability = chooseAbility(sc, main);
+
+
+            Character character = chooseTarget(sc, enemies);
+            main.useAbility(character, ability);
+            updateEnemyList(enemies);
+            enemyAttack(enemies, players, sc, rand);
+        }
+        return choose(sc, "chooseWeapon");
+    }
+
+    private static void enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
+        int targetPos = rand.nextInt(players.size());
+        Player target = players.get(targetPos);
+
+        for (Enemy enemy : enemies) {
+
+                enemy.normalAttack(target);
+
+                Utils.p(enemy.getName() + " has attacked " + target.getName() + "!  " + target.getName() + " now has " + target.getHealth() + " health.");
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getHealth() <= 0) {
+                        players.remove(i);
+                        Utils.p(enemies.get(i).getName() + " has died!");
+                        if (players.size() == 0) {
+                            Utils.p("Game over!");
+                            sc.close();
+                        }
+                    }
+                }
+            }
+
+    }
 }
