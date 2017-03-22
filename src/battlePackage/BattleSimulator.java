@@ -5,10 +5,10 @@ import java.util.Random;
 
 import static battlePackage.ListFactory.*;
 
-public class BattleSimulator {
+public class BattleSimulator{
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         List<Player> players = new ArrayList<>();
         List<Enemy> enemies = new ArrayList<>();
@@ -64,93 +64,48 @@ public class BattleSimulator {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-        Utils.p("" + ((Weapon) swords.get(0)).getAttackDamage());
+     while(true) {
 
 
-        Utils.p("Enter your name");
-        String name = sc.next();
 
-        createPlayer(players, sc, name);
-        Player main = players.get(0);
+         Utils.p("Enter your name");
+         String name = sc.next();
 
-        int choice = choose(sc, "opening");
+         createPlayer(players, sc, name);
+         Player main = players.get(0);
 
-
-        switch (choice) {
-
-            case 1:
-                int weaponType = battle(enemies, players, sc, rand, main, 1);
-
-                Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
-                main.addEquipment(weapon);
-                Utils.p(weapon.toString());
-                battle(enemies, players, sc, rand, main, 2);
-
-                break;
-            case 2:
-                Utils.p("Coward");
-                sc.close();
-                break;
-            default:
-                Utils.p("What?");
-
-                break;
-        }
+         int choice = choose(sc, "opening");
 
 
-        sc.close();
+         switch (choice) {
 
-    }
+             case 1:
+                 int weaponType = battle(enemies, players, sc, rand, main, 1);
 
-    private static int battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, Player main, int battleNum) {
-        switch (battleNum) {
-            case 1:
-
-                enemies.add(new Skeleton("skeleton0"));
-                enemies.get(0).setHealth(100);
-                enemies.add(new Skeleton("bob"));
-                enemies.get(1).setHealth(100);
-                break;
-            case 2:
-                enemies.add(new Skeleton("Skeleton1"));
-                enemies.get(0).setAttackDamage(600);
-                enemies.get(0).setHealth(2000);
-                break;
-        }
-
-        while (enemies.size() > 0) {
-
-            int ability = chooseAbility(sc, main);
-
-
-            Character character = chooseTarget(sc, enemies);
-            main.useAbility(character, ability);
-            updateEnemyList(enemies);
-            enemyAttack(enemies, players, sc, rand);
-        }
-        return choose(sc, "chooseWeapon");
-    }
-//testgg
-    private static void enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
-        int targetPos = rand.nextInt(players.size());
-        Player target = players.get(targetPos);
-
-        for (Enemy enemy : enemies) {
-
-                enemy.normalAttack(target);
-
-                Utils.p(enemy.getName() + " has attacked " + target.getName() + "!  " + target.getName() + " now has " + target.getHealth() + " health.");
-                for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getHealth() <= 0) {
-                        players.remove(i);
-                        Utils.p(enemies.get(i).getName() + " has died!");
-                        if (players.size() == 0) {
-                            Utils.p("Game over!");
-                            sc.close();
-                        }
-                    }
+                 Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
+                 main.addEquipment(weapon);
+                 Utils.p(weapon.toString());
+                 int back= battle(enemies, players, sc, rand, main, 2);
+                if (back==-1){
+                    continue;
                 }
-            }
 
-    }
+                 break;
+             case 2:
+                 Utils.p("Coward");
+                 sc.close();
+                 break;
+             default:
+                 Utils.p("What?");
+
+                 break;
+         }
+
+
+         sc.close();
+     }
+        }
+
 }
+
+
