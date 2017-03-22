@@ -130,7 +130,7 @@ public class BattleSimulator {
         }
         return choose(sc, "chooseWeapon");
     }
-//test
+//testg
     private static void enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
         int targetPos = rand.nextInt(players.size());
         Player target = players.get(targetPos);
