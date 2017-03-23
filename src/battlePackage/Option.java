@@ -11,7 +11,7 @@ private static Map<String, String> dialogues=new HashMap<>();
 private static Map<String, List<String>> options=new HashMap<>();
 
 public static void fillDialogues(){
-	dialogues.put("opening","A skeleton appears! What do you do?");
+	dialogues.put("opening", "What do you do?");
 	dialogues.put("target", "Who to attack?");
 	dialogues.put("playerType", "Choose your player type");
 	dialogues.put("nextAction", "What do you do?");

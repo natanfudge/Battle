@@ -63,8 +63,8 @@ public class BattleSimulator{
 
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
-
-     while(true) {
+boolean back=false;
+    do{
 
 
 
@@ -74,36 +74,34 @@ public class BattleSimulator{
          createPlayer(players, sc, name);
          Player main = players.get(0);
 
-         int choice = choose(sc, "opening");
 
 
-         switch (choice) {
 
-             case 1:
-                 int weaponType = battle(enemies, players, sc, rand, main, 1);
 
+
+
+               back=battle(enemies, players, sc, rand, main, 1);if (back){   continue;}
+int weaponType=choose(sc,"chooseWeapon");
                  Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
-                 main.addEquipment(weapon);
+
+                main.addEquipment(weapon);
                  Utils.p(weapon.toString());
-                 int back= battle(enemies, players, sc, rand, main, 2);
-                if (back==-1){
-                    continue;
-                }
-
-                 break;
-             case 2:
-                 Utils.p("Coward");
-                 sc.close();
-                 break;
-             default:
-                 Utils.p("What?");
-
-                 break;
-         }
+                back= battle(enemies, players, sc, rand, main, 2); if (back){   continue;}
 
 
-         sc.close();
-     }
+
+
+
+
+
+
+
+
+
+             sc.close();
+
+         Utils.p("Done");
+     } while(back);
         }
 
 }

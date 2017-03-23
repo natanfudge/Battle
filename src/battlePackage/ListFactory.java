@@ -107,8 +107,8 @@ public class ListFactory {
         }
     }
 
-    public static int battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, Player main, int battleNum) {
-       boolean back=false;
+    public static boolean battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, Player main, int battleNum) {
+        boolean back = false;
         switch (battleNum) {
             case 1:
 
@@ -119,32 +119,46 @@ public class ListFactory {
                 break;
             case 2:
                 enemies.add(new Skeleton("Skeleton1"));
-                enemies.get(0).setAttackDamage(600);
-                enemies.get(0).setHealth(2000);
+
                 break;
         }
 
-        while (enemies.size() > 0 && players.size() > 0) {
+        for (Enemy enemy : enemies) {
+            Utils.p("A " + enemy.getClass().getSimpleName() + ", " + enemy.getName() + " Appears");
 
-            int ability = chooseAbility(sc, main);
+        }
+
+        int choice = choose(sc, "opening");
+        switch (choice) {
+            case 1:
+
+                while (enemies.size() > 0 && players.size() > 0) {
+
+                    int ability = chooseAbility(sc, main);
 
 
-            Character character = chooseTarget(sc, enemies);
-            main.useAbility(character, ability);
-            updateEnemyList(enemies);
-          back=enemyAttack(enemies, players, sc, rand);
-            if(back){
+                    Character character = chooseTarget(sc, enemies);
+                    main.useAbility(character, ability);
+                    updateEnemyList(enemies);
+                    back = enemyAttack(enemies, players, sc, rand);
+                    if (back) {
+                        break;
+                    }
+
+                }
                 break;
-            }
+            case 2:
+               enemies.clear();
+                Utils.p("Coward");
+                back=true;
+
+                return back;
+
 
         }
-        if(back){
-            return -1;
+                return back;
+
         }
-        else {
-            return choose(sc, "chooseWeapon");
-        }
-    }
 
     public static boolean enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
         boolean back=false;
