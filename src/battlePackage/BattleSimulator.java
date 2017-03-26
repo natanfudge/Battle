@@ -7,7 +7,6 @@ import static battlePackage.ListFactory.*;
 
 public class BattleSimulator{
 
-
     public static void main(String[] args){
 
         List<Player> players = new ArrayList<>();
@@ -80,13 +79,14 @@ boolean back=false;
 
 
 
-               back=battle(enemies, players, sc, rand, main, 1);if (back){   continue;}
-int weaponType=choose(sc,"chooseWeapon");
-                 Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
+               back=battle(enemies, players, sc, rand, 1);if (back){   continue;}
+               int weaponType=choose(sc,"chooseWeapon");
+               Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
 
-                main.addEquipment(weapon);
-                 Utils.p(weapon.toString());
-                back= battle(enemies, players, sc, rand, main, 2); if (back){   continue;}
+               main.addEquipment(weapon);
+               Utils.p(weapon.toString());
+               back= battle(enemies, players, sc, rand, 2); if (back){   continue;}
+               Utils.p("You have beat the 2nd battle. \n "+main.getName()+"leveled up! \n"+main.getName());
 
 
 

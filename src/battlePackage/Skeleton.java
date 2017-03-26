@@ -15,6 +15,7 @@ public class Skeleton extends Normal {
 		setAttackDamage(60);
 		setMana(0);
 		setHealth(300);
+		setEXPBounty(5);
 	}
 
 }

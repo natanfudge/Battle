@@ -1,7 +1,5 @@
 package battlePackage;
 
-import java.util.List;
-
 public class ActionDuration implements Runnable {
 	
 	String specificAction;

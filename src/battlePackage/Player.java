@@ -5,10 +5,11 @@ import java.util.List;
 
 public abstract class Player implements Character {
 
-	private int health;
-	private int mana;
+	private float health;
+	private float mana;
 	private int attackDamage;
 	private int spellDamage;
+	private float experience;
 	private float healthRegeneration;
 	private float manaRegeneration;
 	private String name;
@@ -20,15 +21,15 @@ public abstract class Player implements Character {
 	private List<Ability> abilities=new ArrayList<>();
     private List<Equipment>equipment=new ArrayList<>();
 
-	public int getHealth() {
+	public float getHealth() {
 		return health;
-	}   public void setHealth(int health) {
+	}   public void setHealth(float health) {
 		this.health = health;
 	}
 
-	public int getMana() {
+	public float getMana() {
 		return mana;
-	}   public void setMana(int mana) {
+	}   public void setMana(float mana) {
 		this.mana = mana;
 	}
 
@@ -43,6 +44,10 @@ public abstract class Player implements Character {
 	}   public void setSpellDamage(int spellDamage) {
 		this.spellDamage = spellDamage;
 	}
+
+	public float getExperience() {return experience;}		public void setExperience(float experience) {this.experience = experience;}
+
+
 
 	public float getHealthRegeneration() {return healthRegeneration;}public void setHealthRegeneration(float healthRegeneration) {this.healthRegeneration = healthRegeneration;}
 

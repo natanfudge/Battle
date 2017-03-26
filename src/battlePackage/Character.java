@@ -1,14 +1,13 @@
 package battlePackage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface Character {
 
 
-	int getHealth();
+	float getHealth();
 
-	int getMana();
+	float getMana();
 
 	int getAttackDamage();
 

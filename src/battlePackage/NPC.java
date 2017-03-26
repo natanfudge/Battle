@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class NPC implements Character {
 
-	private int health;
+	private float health;
 
 	private int mana;
 
@@ -28,15 +28,15 @@ public abstract class NPC implements Character {
 		this.name=name;
 	}
 
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
 
-	public void setHealth(int health) {
+	public void setHealth(float health) {
 		this.health = health;
 	}
 
-	public int getMana() {
+	public float getMana() {
 		return mana;
 	}
 

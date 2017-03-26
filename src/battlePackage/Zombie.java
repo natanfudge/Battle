@@ -3,12 +3,12 @@ package battlePackage;
 public class Zombie extends Enemy{
 
     @Override
-    public int getHealth() {
+    public float getHealth() {
         return 0;
     }
 
     @Override
-    public void setHealth(int health) {
+    public void setHealth(float health) {
 
     }
 

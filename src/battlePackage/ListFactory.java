@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class ListFactory {
    boolean back;
+    static private int levelModifier=10;
 
     public static int choose(Scanner sc, String topic) {
 
@@ -25,13 +26,21 @@ public class ListFactory {
         return choice;
     }
 
-    public static void updateEnemyList(List<Enemy> enemies) {
+    public static void roundUpdate(List<Enemy> enemies, Player attacker) {
+
+
         for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).getHealth() <= 0) {
-                Utils.p(enemies.get(i).getName()+" has died!");
+            Enemy attacked= enemies.get(i);
+            if (attacked.getHealth() <= 0) {
+                Utils.p(attacked.getName()+" has died!");
+
+            float attackerEXP=  attacker.getExperience();
+attacker.setExperience(attackerEXP+=attacked.getEXPBounty());
+Utils.p(attacker.getName()+" got "+attacked.getEXPBounty()+" Exp!");
+
                 enemies.remove(i);
 
-
+       //  switch(attackerLevel)
             }
 
         }
@@ -107,7 +116,7 @@ public class ListFactory {
         }
     }
 
-    public static boolean battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, Player main, int battleNum) {
+    public static boolean battle(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand, int battleNum) {
         boolean back = false;
         switch (battleNum) {
             case 1:
@@ -133,20 +142,20 @@ public class ListFactory {
             case 1:
 
                 while (enemies.size() > 0 && players.size() > 0) {
-
-                    int ability = chooseAbility(sc, main);
-
-
-                    Character character = chooseTarget(sc, enemies);
-                    main.useAbility(character, ability);
-                    updateEnemyList(enemies);
-                    back = enemyAttack(enemies, players, sc, rand);
-                    if (back) {
-                        break;
-                    }
-
+for(Player player:players) {
+    playerAttack(enemies, sc, player);
+    back = enemyAttack(enemies, players, sc, rand);
+    if (back) {
+        break;
+    }
+}
                 }
+
                 break;
+
+
+
+
             case 2:
                enemies.clear();
                 Utils.p("Coward");
@@ -159,6 +168,13 @@ public class ListFactory {
                 return back;
 
         }
+
+    private static void playerAttack(List<Enemy> enemies, Scanner sc,Player player) {
+        int ability = chooseAbility(sc, player);
+        Character character = chooseTarget(sc, enemies);
+        player.useAbility(character, ability);
+        roundUpdate(enemies,player);
+    }
 
     public static boolean enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
         boolean back=false;
