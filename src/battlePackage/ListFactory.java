@@ -26,7 +26,7 @@ public class ListFactory {
         return choice;
     }
 
-    public static void roundUpdate(List<Enemy> enemies, Player attacker) {
+    public static void enemyDeath(List<Enemy> enemies, Player attacker) {
 
 
         for (int i = 0; i < enemies.size(); i++) {
@@ -173,7 +173,7 @@ for(Player player:players) {
         int ability = chooseAbility(sc, player);
         Character character = chooseTarget(sc, enemies);
         player.useAbility(character, ability);
-        roundUpdate(enemies,player);
+        enemyDeath(enemies,player);
     }
 
     public static boolean enemyAttack(List<Enemy> enemies, List<Player> players, Scanner sc, Random rand) {
