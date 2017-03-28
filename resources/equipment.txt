@@ -1,0 +1,4 @@
+sword,100,Sharpy,POWER,150,0,1.2f
+sword,100,Sword1,NONE,70,0,1.8f
+Wand,80,Wand1,KNOWLEDGE,30,200,2.2f
+Wand,80,Wand2,NONE,40,150,1.8f

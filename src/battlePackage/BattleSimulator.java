@@ -1,5 +1,11 @@
 package battlePackage;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.Random;
 
@@ -19,24 +25,59 @@ public class BattleSimulator{
         //CharacterFactory.setCharacters(enemies);
 
 
-        Map<String, Map<Integer, List<Equipment>>> equipment = new HashMap();
+        Map<String, Map<Integer, List<Equipment>>> equipment = new HashMap<>();
 
 
         Map<Integer, List<Equipment>> weapons = new HashMap<>();
         equipment.put("weapons", weapons);
 
-
         List<Equipment> swords = new ArrayList<>();
         weapons.put(1, swords);
 
-        swords.add(new Sword(100, "Sharpy", Enchantment.POWER, 150, 1.2f));
-        swords.add(new Sword(100, "Sword1", Enchantment.NONE, 70, 1.8f));
-
         List<Equipment> wands = new ArrayList<>();
         weapons.put(2, wands);
-        wands.add(new Wand(80, "Wand1", Enchantment.KNOWLEDGE, 30, 200, 2.2f));
-        wands.add(new Wand(80, "Wand2", Enchantment.NONE, 40, 150, 1.8f));
+        
+        try {
+			DataInputStream dataIn = new DataInputStream(new FileInputStream("resources/equipment.txt"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(dataIn));
+			while (true) {
+				try {
+					String equipmentLine = in.readLine();
+					if (equipmentLine!=null) {
+						String[] splits = equipmentLine.split(",");
+						String type=splits[0];
+						int durability = Integer.valueOf(splits[1]);
+						String name = splits[2];
+						Enchantment enchantment = Enchantment.valueOf(splits[3]);
+						int attackDamage= Integer.valueOf(splits[4]);
+						int spellDamage= Integer.valueOf(splits[5]);
 
+						float attackSpeed= Float.valueOf(splits[6]);
+					
+						switch(type){
+						case ("sword"):
+							swords.add(new Sword(durability,name,enchantment,attackDamage,attackSpeed));
+						break;
+						case("Wand"):
+							
+							wands.add(new Wand(durability,name,enchantment,attackDamage,spellDamage,attackSpeed));
+							break;
+						}
+						Utils.p(splits.toString());
+					} else {
+						break;
+					}
+				} catch (IOException e) {
+					break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        
+        
 
         Map<Integer, List<Equipment>> armor = new HashMap<>();
         equipment.put("armor", armor);
