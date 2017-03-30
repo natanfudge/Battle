@@ -56,7 +56,7 @@ public static void fillOptions(){
 }
 	public static String getDialogue(String topic){
  return dialogues.get(topic);
-	
+
 }
 public static List <String> getOptions(String topic){
 return options.get(topic);
@@ -64,7 +64,7 @@ return options.get(topic);
 	public static List<String> chooseWeapon(Map<String,Equipment> equipment){
 List<String>weapons=new ArrayList<>();
 for(Map.Entry<String,Equipment> eqp:equipment.entrySet()) {
-	weapons.add(eqp.getKey());
+	weapons.add(eqp.getKey()+eqp.toString());
 }
 	return weapons;
 

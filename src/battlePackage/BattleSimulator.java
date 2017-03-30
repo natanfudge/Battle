@@ -1,11 +1,7 @@
 package battlePackage;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.util.*;
 import java.util.Random;
 
@@ -14,6 +10,9 @@ import static battlePackage.ListFactory.*;
 public class BattleSimulator{
 
     public static void main(String[] args){
+
+
+
 
         List<Player> players = new ArrayList<>();
         List<Enemy> enemies = new ArrayList<>();
@@ -63,7 +62,7 @@ public class BattleSimulator{
 							wands.add(new Wand(durability,name,enchantment,attackDamage,spellDamage,attackSpeed));
 							break;
 						}
-						Utils.p(splits.toString());
+
 					} else {
 						break;
 					}
@@ -75,6 +74,13 @@ public class BattleSimulator{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+
+
+
+
+
+
 
         
         
@@ -120,14 +126,14 @@ boolean back=false;
 
 
 
-               back=battle(enemies, players, sc, rand, 1);if (back){   continue;}
+               back=battle(enemies, players, sc, rand, "1");if (back){   continue;}
                int weaponType=choose(sc,"chooseWeapon");
                Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
 
                main.addEquipment(weapon);
-               Utils.p(weapon.toString());
-               back= battle(enemies, players, sc, rand, 2); if (back){   continue;}
-               Utils.p("You have beat the 2nd battle. \n "+main.getName()+"leveled up! \n"+main.getName());
+
+               back= battle(enemies, players, sc, rand, "2"); if (back){   continue;}
+               Utils.p("You have beat the 2nd battle. \n ");
 
 
 

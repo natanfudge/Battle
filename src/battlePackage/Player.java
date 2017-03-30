@@ -10,6 +10,7 @@ public abstract class Player implements Character {
 	private int attackDamage;
 	private int spellDamage;
 	private float experience;
+	private int level=1;
 	private float healthRegeneration;
 	private float manaRegeneration;
 	private String name;
@@ -47,7 +48,9 @@ public abstract class Player implements Character {
 
 	public float getExperience() {return experience;}		public void setExperience(float experience) {this.experience = experience;}
 
+	public int getLevel() {return level;}
 
+	public void setLevel(int level) {this.level = level;}
 
 	public float getHealthRegeneration() {return healthRegeneration;}public void setHealthRegeneration(float healthRegeneration) {this.healthRegeneration = healthRegeneration;}
 
@@ -188,6 +191,8 @@ public int getTSD(){
 		getEquipment().remove(equipment);
 
 	}
+
+
 }
 
 
