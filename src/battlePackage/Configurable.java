@@ -1,9 +1,16 @@
 package battlePackage;
 
-import java.io.*;
-import java.util.Properties;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
-public class Configuarable {
+public class Configurable {
+    private static Map<String,Integer> config=new HashMap<>();
+public static int getConfigurable(String configurable){
+    return config.get(configurable);
+}
+
 
     public static void loadConfig() {
         Properties prop = new Properties();
@@ -11,15 +18,12 @@ public class Configuarable {
 
         try {
 
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("resources/config.properties");
 
-            // load a properties file
+
             prop.load(input);
 
-            // get the property value and print it out
-            System.out.println(prop.getProperty("database"));
-            System.out.println(prop.getProperty("dbuser"));
-            System.out.println(prop.getProperty("dbpassword"));
+
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -31,7 +35,10 @@ public class Configuarable {
                     e.printStackTrace();
                 }
             }
+
+            config.put("levelModifier",Integer.parseInt(prop.getProperty("levelModifier")));
+
         }
 
     }
-}
+    }

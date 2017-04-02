@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class ListFactory {
    boolean back;
-    static private final int  levelModifier=10;
 
 
+private static final int levelModifier=Configurable.getConfigurable("levelModifier");
     public static int choose(Scanner sc, String topic) {
 
 
