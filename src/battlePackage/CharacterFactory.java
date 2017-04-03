@@ -49,7 +49,8 @@ CharacterFactory enemy=new CharacterFactory();
             case 2:
                 character = new Mage(400, 600, 20, 2.5f, 200, name);
                 break;
-
+             case 3:
+                 character=new Archer(600,200,200,1.2f,50,name);
         }
         if (character!=null)
         	character.setPrintOnly(printOnly);

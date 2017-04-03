@@ -29,6 +29,7 @@ public static void fillOptions(){
  List<String> optionsList=new ArrayList<>();
  optionsList.add("Warrior-high health low spell power medium attack damage medium attack speed");
  optionsList.add("Mage-low health high spell power low attack damage low attack speed");
+ optionsList.add("Archer- attacks fast and strongly low health.");
 	options.put("playerType", optionsList) ;
 
 

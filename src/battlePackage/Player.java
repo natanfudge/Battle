@@ -14,7 +14,7 @@ public abstract class Player implements Character {
 	private float healthRegeneration;
 	private float manaRegeneration;
 	private String name;
-	private PlayerType playerType;
+
 	private float attackSpeed;
 	private float attackDelay;
 	private boolean printOnly;
@@ -62,7 +62,7 @@ public abstract class Player implements Character {
 		this.name = name;
 	}
 
-	public PlayerType getPlayerType() {return playerType;}   public void setPlayerType(PlayerType playerType) {this.playerType = playerType;}
+
 
 	public float getAttackDelay() {
 		return attackDelay;
@@ -100,7 +100,7 @@ public abstract class Player implements Character {
 
     }
 
-public int getTAD(){
+public int getTAttackDamage(){
 		int attackDamage=getAttackDamage();
 		for(Equipment eqp:getEquipment()){
 			if(eqp instanceof Weapon||eqp instanceof Wand) {
@@ -108,10 +108,11 @@ public int getTAD(){
 			}
 
 
+
 		}
 		return attackDamage;
 }
-public int getTSD(){
+public int getTSpellDamage(){
 	int spellDamage=getSpellDamage();
 	for(Equipment eqp:getEquipment()){
 		if(eqp instanceof Wand){
@@ -120,22 +121,37 @@ public int getTSD(){
 	}
 	return spellDamage;
 }
+public float getTHealth(){
+	float health=getHealth();
+	for(Equipment eqp:getEquipment()){
+		if(eqp instanceof Armor){
+			health+=((Armor)eqp).getHealth();
+		}
+	}
+	return health;
+}
 
 	public void normalAttack(Character character) {
 		if (isPrintOnly()) {
-			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getTAD());
+			System.out.println(getName()+" attack "+character.getName()+ " with attack damage: "+getTAttackDamage());
 		} else
-			character.attacked(getTAD());
+			character.attacked(getTAttackDamage());
 	}
 	public void magicMissle(Character character) {
-			character.attacked(getTSD());
+			character.attacked(getTSpellDamage());
 	}
 
-    @Override
-    public void attacked(int afterMathEffect) {
+	public void headButt(Character character){
+		character.attacked((getTAttackDamage()/2)+(getTHealth()/10));
+	}
+	@Override
+    public void attacked(float afterMathEffect) {
         setHealth(getHealth() - afterMathEffect);
-        ;
+
     }
+    public void rangedAttack(Character character){
+		character.attacked(getTAttackDamage()/2);
+	}
 
 	public boolean isPrintOnly() {
 		return printOnly;
@@ -157,6 +173,11 @@ public int getTSD(){
 				break;
 			case magicMissle:
 				magicMissle(character);
+				break;
+			case rangedAttack:
+				rangedAttack(character);
+			case headButt:
+				headButt(character);
 		}
 		Utils.p(character.getName() + " now has " + character.getHealth() + " health");
 

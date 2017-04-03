@@ -21,7 +21,7 @@ public interface Character {
 	
 	void normalAttack(Character character);
 	
-	void attacked(int attackDamage);
+	void attacked(float attackDamage);
 
 	float getAttackSpeed();
 	

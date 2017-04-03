@@ -2,6 +2,6 @@ package battlePackage;
 
 
 public enum Ability {
-    normal,magicMissle,ranged,heal
+    normal,magicMissle, rangedAttack,heal,headButt;
 
 }

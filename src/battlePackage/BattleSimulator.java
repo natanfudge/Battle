@@ -132,9 +132,9 @@ boolean back=false;
 
 
                back=battle(enemies, players, sc, rand, "1");if (back){   continue;}
+
                int weaponType=choose(sc,"chooseWeapon");
                Equipment weapon = choiceWeapon(sc, weaponType, Option.getOptions("chooseWeapon").get(weaponType - 1), equipment);
-
                main.addEquipment(weapon);
 
                back= battle(enemies, players, sc, rand, "2"); if (back){   continue;}

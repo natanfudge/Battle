@@ -4,7 +4,7 @@ package battlePackage;
     
 
 	private float protection;
-
+private float health;
 	
 
 	public float getProtection() {
@@ -20,5 +20,12 @@ package battlePackage;
 		super(durability, name, enchantment);
 		this.protection = protection;
 	}
-	
-}
+
+	 public float getHealth() {
+		 return health;
+	 }
+
+	 public void setHealth(float health) {
+		 this.health = health;
+	 }
+ }

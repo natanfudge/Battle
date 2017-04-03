@@ -10,7 +10,7 @@ private int EXPBounty;
 	public Enemy(String name) {
 		super(name);
 	}
-	public void attacked(int attackDamage){
+	public void attacked(float attackDamage){
 		setHealth(getHealth()-attackDamage);
 	}
 	
