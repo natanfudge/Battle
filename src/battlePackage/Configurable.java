@@ -12,13 +12,13 @@ public static int getConfigurable(String configurable){
 }
 
 
-    public static void loadConfig() {
+    public static Properties loadConfig(String fileName) {
         Properties prop = new Properties();
         InputStream input = null;
 
         try {
 
-            input = new FileInputStream("resources/config.properties");
+            input = new FileInputStream("resources/"+fileName+".properties");
 
 
             prop.load(input);
@@ -36,9 +36,13 @@ public static int getConfigurable(String configurable){
                 }
             }
 
-            config.put("levelModifier",Integer.parseInt(prop.getProperty("levelModifier")));
+
 
         }
-
+return prop;
+    }
+    public static void loadConfig(){
+    Properties prop=loadConfig("config");
+        config.put("levelModifier",Integer.parseInt(prop.getProperty("levelModifier")));
     }
     }

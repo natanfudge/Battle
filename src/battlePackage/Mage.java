@@ -12,8 +12,8 @@ public class Mage extends Player {
 
 	@Override
 	public void addAbilities() {
-		getAbilities().add(Ability.normal);
-		getAbilities().add(Ability.magicMissle);
+		getAbilities().add("normal");
+		getAbilities().add("magicMissle");
 
 		
 	}

@@ -88,7 +88,7 @@ public abstract class NPC implements Character {
 		character.attacked(getAttackDamage());
 	}
 	public void attacked(float attackDamage){
-		setHealth(getHealth()-attackDamage);;
+		setHealth(getHealth()-attackDamage);
 	}
 
 

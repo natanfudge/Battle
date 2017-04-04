@@ -114,7 +114,7 @@ Utils.p("" +levelModifier);
 
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
-boolean back=false;
+boolean back;
     do{
 
 

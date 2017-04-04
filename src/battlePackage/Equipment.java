@@ -1,6 +1,6 @@
 package battlePackage;
 
-import java.util.List;
+
 
 abstract class Equipment {
 	private int durability;

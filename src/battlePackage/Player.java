@@ -19,7 +19,7 @@ public abstract class Player implements Character {
 	private float attackDelay;
 	private boolean printOnly;
 
-	private List<Ability> abilities=new ArrayList<>();
+	private List<String> abilities=new ArrayList<>();
     private List<Equipment>equipment=new ArrayList<>();
 
 	public float getHealth() {
@@ -79,10 +79,10 @@ public abstract class Player implements Character {
    
 
 
-	public List<Ability> getAbilities() {
+	public List<String> getAbilities() {
 		return abilities;
 	}
-	public void setAbilities(List<Ability> abilities) {
+	public void setAbilities(List<String> abilities) {
 		this.abilities = abilities;
 	}
 
@@ -165,36 +165,15 @@ public float getTHealth(){
     public abstract void addAbilities();
 
 	public void useAbility(Character character, int abilityPosition) {
-		List<Ability> abilities=getAbilities();
-		Ability ability=abilities.get(abilityPosition-1);
-		switch(ability){
-			case normal:
-				normalAttack(character);
-				break;
-			case magicMissle:
-				magicMissle(character);
-				break;
-			case rangedAttack:
-				rangedAttack(character);
-			case headButt:
-				headButt(character);
-		}
+		List<String> abilities=getAbilities();
+		String ability=abilities.get(abilityPosition-1);
+		float damage=Ability.getDamage(ability,this);
+		character.attacked(damage);
 		Utils.p(character.getName() + " now has " + character.getHealth() + " health");
 
 	}
 
 
-	public void useAbilityDuration(Character character, int abilityPosition) {
-		List<Ability> abilities=getAbilities();
-		Ability ability=abilities.get(abilityPosition-1);
-		switch(ability){
-			case normal:
-				normalAttack(character);
-				break;
-			case magicMissle:
-				magicMissle(character);
-		}
-	}
 
 	public List<Equipment> getEquipment(){
 		return equipment;

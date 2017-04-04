@@ -44,8 +44,8 @@ private static final int levelModifier=Configurable.getConfigurable("levelModifi
         while ((choice = sc.nextInt()) > weapons.size()) ;
 
 
-        Equipment weapon = weapons.get(choice - 1);
-        return weapon;
+
+        return weapons.get(choice-1);
 
     }
 
@@ -142,7 +142,7 @@ for(Player player:players) {
 	public static int chooseAbility(Scanner sc, Player player) {
 		int choice;
 		Utils.p(Option.getDialogue("ability"));
-		List<Ability> options = player.getAbilities();
+		List<String> options = player.getAbilities();
 		for (int i = 0; i < options.size(); i++) {
 			Utils.p("[" + (i + 1) + "]" + options.get(i));
 		}
