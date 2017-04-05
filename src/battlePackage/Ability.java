@@ -29,50 +29,34 @@ public class Ability {
             case "/":
                 thisOutput/=number;
                 action=null;
-                output+=thisOutput;
-                thisOutput=0f;
                 break;
             case "*":
                 thisOutput*=number;
                 action=null;
-                output+=thisOutput;
-                thisOutput=0f;
                 break;
             case "+":
                 thisOutput+=number;
                 action=null;
-                output+=thisOutput;
-                thisOutput=0f;
                 break;
             case"-":
                 thisOutput-=number;
                 action=null;
-                output+=thisOutput;
-                thisOutput=0f;
                 break;
-
-
+        }
+        if (action==null) {
+            output+=thisOutput;
+            thisOutput=0f;
         }
    }else {
         switch(currentInput){
 
             case "/":
-                action = "/";
-                break;
             case "*":
-                action = "*";
-                break;
             case "+":
-                action = "+";
-                break;
             case "-":
-                action = "-";
-                break;
             case "~":
-                action = "~";
+            	action = currentInput;
                 break;
-
-
             default:
                 currentInput = currentInput.substring(0, 1).toUpperCase() + currentInput.substring(1);
                 currentInput = "T" + currentInput;
