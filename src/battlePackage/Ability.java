@@ -13,11 +13,18 @@ public class Ability {
 
 
    public static Float getDamage(String abilityName, Character character){
-       Float thisOutput = 0f;
-       float output=0;
-       String action=null;
        String abilityProp = prop.getProperty(abilityName);
-       StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
+       float output = damageCalculator(character,  abilityProp);
+           Utils.p(""+output);
+      return output;
+   }
+
+
+private static float damageCalculator(Character character,String abilityProp) {
+    String action=null;
+    float output=0;
+    Float thisOutput = 0f;
+	StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
 
        while(tokenizer.hasMoreTokens()){
         String currentInput=tokenizer.nextToken();
@@ -74,13 +81,7 @@ public class Ability {
 
 
 }
-           Utils.p(""+output);
-
-
-
-
-
-       return output;
-   }
+	return output;
+}
 
 }
