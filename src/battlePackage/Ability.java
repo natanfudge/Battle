@@ -13,7 +13,8 @@ public class Ability {
 
 
    public static Float getDamage(String abilityName, Character character){
-       Float output = null;
+       Float thisOutput = 0f;
+       float output=0;
        String action=null;
        String abilityProp = prop.getProperty(abilityName);
        StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
@@ -26,22 +27,30 @@ public class Ability {
         float number=Float.valueOf(currentInput);
         switch(action){
             case "/":
-                output/=number;
+                thisOutput/=number;
                 action=null;
-
+                output+=thisOutput;
+                thisOutput=0f;
                 break;
             case "*":
-                output*=number;
+                thisOutput*=number;
                 action=null;
+                output+=thisOutput;
+                thisOutput=0f;
                 break;
             case "+":
-                output+=number;
+                thisOutput+=number;
                 action=null;
+                output+=thisOutput;
+                thisOutput=0f;
                 break;
             case"-":
-                output-=number;
+                thisOutput-=number;
                 action=null;
+                output+=thisOutput;
+                thisOutput=0f;
                 break;
+
 
         }
    }else {
@@ -68,15 +77,17 @@ public class Ability {
                 currentInput = currentInput.substring(0, 1).toUpperCase() + currentInput.substring(1);
                 currentInput = "T" + currentInput;
                 try {
-                    output = Float.valueOf(BeanUtils.getProperty(character, currentInput));
+                    thisOutput = Float.valueOf(BeanUtils.getProperty(character, currentInput));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
                 break;
 
 
         }
     }
+
 
 }
            Utils.p(""+output);
