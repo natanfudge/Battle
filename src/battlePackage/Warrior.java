@@ -10,7 +10,7 @@ public class Warrior extends Player {
 
 	@Override
 	public void addAbilities() {
-		getAbilities().add("normal");
+		getAbilities().add("normalAttack");
 		getAbilities().add("headButt");
 	}
 	

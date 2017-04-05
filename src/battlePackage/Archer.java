@@ -12,7 +12,9 @@ public void rangedAttack(Character character){
 
     @Override
     public void addAbilities() {
-        getAbilities().add("normal");
+        getAbilities().add("normalAttack");
+        getAbilities().add("rangedAttack");
+
 
 
 

@@ -8,6 +8,10 @@ public abstract class Player implements Character {
 	private float health;
 	private float mana;
 	private int attackDamage;
+
+
+
+
 	private int spellDamage;
 	private float experience;
 	private int level=1;
@@ -100,7 +104,7 @@ public abstract class Player implements Character {
 
     }
 
-public int getTAttackDamage(){
+public float getTAttackDamage(){
 		int attackDamage=getAttackDamage();
 		for(Equipment eqp:getEquipment()){
 			if(eqp instanceof Weapon||eqp instanceof Wand) {
@@ -111,8 +115,10 @@ public int getTAttackDamage(){
 
 		}
 		return attackDamage;
+
 }
-public int getTSpellDamage(){
+
+public float getTSpellDamage(){
 	int spellDamage=getSpellDamage();
 	for(Equipment eqp:getEquipment()){
 		if(eqp instanceof Wand){
