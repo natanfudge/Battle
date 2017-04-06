@@ -12,76 +12,81 @@ public class Ability {
     private static Properties prop=Configurable.loadConfig("abilities");
 
 
-   public static Float getDamage(String abilityName, Character character){
-       String abilityProp = prop.getProperty(abilityName);
-       float output = damageCalculator(character,  abilityProp);
-           Utils.p(""+output);
-      return output;
-   }
+    public static Float getDamage(String abilityName, Character character){
+        Float thisOutput = 0f;
+        float output=0;
+        String action=null;
+        String abilityProp = prop.getProperty(abilityName);
+        StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
+
+        while(tokenizer.hasMoreTokens()){
+            String currentInput=tokenizer.nextToken();
+
+            if(action=="/"||action=="*"||action=="+"||action=="-") {
+
+                float number=Float.valueOf(currentInput);
+                switch(action){
+                    case "/":
+                        thisOutput/=number;
+                        break;
+                    case "*":
+                        thisOutput*=number;
+                        break;
+                    case "+":
+                        thisOutput+=number;
+                        break;
+                    case"-":
+                        thisOutput-=number;
 
 
-private static float damageCalculator(Character character,String abilityProp) {
-    String action=null;
-    float output=0;
-    Float thisOutput = 0f;
-	StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
-
-       while(tokenizer.hasMoreTokens()){
-        String currentInput=tokenizer.nextToken();
-
-    if(action=="/"||action=="*"||action=="+"||action=="-") {
-
-        float number=Float.valueOf(currentInput);
-        switch(action){
-            case "/":
-                thisOutput/=number;
-                action=null;
-                break;
-            case "*":
-                thisOutput*=number;
-                action=null;
-                break;
-            case "+":
-                thisOutput+=number;
-                action=null;
-                break;
-            case"-":
-                thisOutput-=number;
-                action=null;
-                break;
-        }
-        if (action==null) {
-            output+=thisOutput;
-            thisOutput=0f;
-        }
-   }else {
-        switch(currentInput){
-
-            case "/":
-            case "*":
-            case "+":
-            case "-":
-            case "~":
-            	action = currentInput;
-                break;
-            default:
-                currentInput = currentInput.substring(0, 1).toUpperCase() + currentInput.substring(1);
-                currentInput = "T" + currentInput;
-                try {
-                    thisOutput = Float.valueOf(BeanUtils.getProperty(character, currentInput));
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+                action=null;
+            }else {
+                switch(currentInput){
 
-                break;
+                    case "/":
+                        action = "/";
+                        break;
+                    case "*":
+                        action = "*";
+                        break;
+                    case "+":
+                        action = "+";
+                        break;
+                    case "-":
+                        action = "-";
+                        break;
+                    case "~":
+                        action = "~";
+                        output+=thisOutput;
+                        thisOutput=0f;
+                        break;
+
+
+                    default:
+                        currentInput = currentInput.substring(0, 1).toUpperCase() + currentInput.substring(1);
+                        currentInput = "T" + currentInput;
+                        try {
+                            thisOutput = Float.valueOf(BeanUtils.getProperty(character, currentInput));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        break;
+
+
+                }
+            }
 
 
         }
+
+        output+=thisOutput;
+        Utils.p(""+output);
+
+
+
+        return output;
     }
-
-
-}
-	return output;
-}
 
 }
