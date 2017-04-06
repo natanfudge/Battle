@@ -99,14 +99,18 @@ public class Ability {
          String key=(String)e.nextElement();
 
          String abilityProp = prop.getProperty(key);
-         StringTokenizer tokenizer=new StringTokenizer(abilityProp,",",true);
 
-        if(thisclass.getSimpleName().equals(key)){
-           Player.getAbilities().add(tokenizer.toString());
-        }
 
-     }
+
+             if (thisclass.getSimpleName().equals(key)) {
+                 String[] splits = abilityProp.split(",");
+                for(String string:splits) {
+                    Player.addAbility(string);
+                }
+                 }
+             }
+         }
+
 
     }
 
-}

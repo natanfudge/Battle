@@ -86,6 +86,9 @@ public abstract class Player implements Character {
 	public static List<String> getAbilities() {
 		return abilities;
 	}
+	public static void addAbility(String ability){
+		abilities.add(ability);
+	}
 	public void setAbilities(List<String> abilities) {
 		this.abilities = abilities;
 	}
