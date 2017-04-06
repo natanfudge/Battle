@@ -8,11 +8,7 @@ public class Warrior extends Player {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void addAbilities() {
-		getAbilities().add("normalAttack");
-		getAbilities().add("headButt");
-	}
+
 	
 	}
 	

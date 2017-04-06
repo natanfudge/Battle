@@ -23,7 +23,7 @@ public abstract class Player implements Character {
 	private float attackDelay;
 	private boolean printOnly;
 
-	private List<String> abilities=new ArrayList<>();
+	private static List<String> abilities=new ArrayList<>();
     private List<Equipment>equipment=new ArrayList<>();
 
 	public float getHealth() {
@@ -83,7 +83,7 @@ public abstract class Player implements Character {
    
 
 
-	public List<String> getAbilities() {
+	public static List<String> getAbilities() {
 		return abilities;
 	}
 	public void setAbilities(List<String> abilities) {
@@ -100,7 +100,7 @@ public abstract class Player implements Character {
         this.attackSpeed = attackSpeed;
         attackDelay= 1 / attackSpeed;
         this.spellDamage=spellDamage;
-        addAbilities();
+        Ability.giveAbilities(this.getClass());
 
     }
 
@@ -168,7 +168,9 @@ public float getTHealth(){
 	}
 
 
-    public abstract void addAbilities();
+
+
+
 
 	public void useAbility(Character character, int abilityPosition) {
 		List<String> abilities=getAbilities();

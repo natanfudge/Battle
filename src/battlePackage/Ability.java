@@ -3,24 +3,25 @@ package battlePackage;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
 public class Ability {
 
-    private static Properties prop=Configurable.loadConfig("abilities");
+    private static Properties propAbility =Configurable.load("abilities");
 
-
+//adding abilities-
     public static Float getDamage(String abilityName, Character character){
         Float thisOutput = 0f;
         float output=0;
         String action=null;
-        String abilityProp = prop.getProperty(abilityName);
+        String currentInput=null;
+        String abilityProp = propAbility.getProperty(abilityName);
         StringTokenizer tokenizer=new StringTokenizer(abilityProp,"+-*/~",true);
 
         while(tokenizer.hasMoreTokens()){
-            String currentInput=tokenizer.nextToken();
+             currentInput=tokenizer.nextToken();
 
             if(action=="/"||action=="*"||action=="+"||action=="-") {
 
@@ -82,11 +83,30 @@ public class Ability {
         }
 
         output+=thisOutput;
-        Utils.p(""+output);
+        //distributing to types-
 
 
 
         return output;
+
+    }
+
+    public static void giveAbilities(Class thisclass){
+         Properties prop=Configurable.load("typeAbilities");
+
+        Enumeration e=prop.propertyNames();
+     while(e.hasMoreElements()){
+         String key=(String)e.nextElement();
+
+         String abilityProp = prop.getProperty(key);
+         StringTokenizer tokenizer=new StringTokenizer(abilityProp,",",true);
+
+        if(thisclass.getSimpleName().equals(key)){
+           Player.getAbilities().add(tokenizer.toString());
+        }
+
+     }
+
     }
 
 }

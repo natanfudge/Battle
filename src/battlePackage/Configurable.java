@@ -12,7 +12,7 @@ public static int getConfigurable(String configurable){
 }
 
 
-    public static Properties loadConfig(String fileName) {
+    public static Properties load(String fileName) {
         Properties prop = new Properties();
         InputStream input = null;
 
@@ -41,8 +41,8 @@ public static int getConfigurable(String configurable){
         }
 return prop;
     }
-    public static void loadConfig(){
-    Properties prop=loadConfig("config");
+    public static void load(){
+    Properties prop= load("config");
         config.put("levelModifier",Integer.parseInt(prop.getProperty("levelModifier")));
     }
     }

@@ -36,7 +36,7 @@ public static void fillOptions(){
 	optionsList=new ArrayList<>();
 	options.put("nextAction", optionsList) ;
 	optionsList=new ArrayList<>();
-	//for(Enemy enemy:CharacterFactory.getCharacters()){optionsList.add(enemy.getName());}
+
 	options.put("target",optionsList);
 
 

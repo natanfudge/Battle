@@ -10,13 +10,7 @@ public class Mage extends Player {
 
 
 
-	@Override
-	public void addAbilities() {
-		getAbilities().add("normal");
-		getAbilities().add("magicMissile");
 
-		
-	}
 
 
 }

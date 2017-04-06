@@ -10,13 +10,6 @@ public void rangedAttack(Character character){
         super(health, mana, attackDamage, attackSpeed, spellDamage, name);
     }
 
-    @Override
-    public void addAbilities() {
-        getAbilities().add("normalAttack");
-        getAbilities().add("rangedAttack");
 
 
-
-
-    }
 }

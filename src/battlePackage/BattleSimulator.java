@@ -10,7 +10,7 @@ import static battlePackage.ListFactory.*;
 public class BattleSimulator{
 
     public static void main(String[] args){
-Configurable.loadConfig();
+Configurable.load();
 int levelModifier=Configurable.getConfigurable("levelModifier");
 Utils.p("" +levelModifier);
         Properties prop = new Properties();
