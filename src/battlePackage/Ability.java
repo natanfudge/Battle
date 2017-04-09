@@ -46,23 +46,13 @@ public class Ability {
                 switch(currentInput){
 
                     case "/":
-                        action = "/";
-                        break;
                     case "*":
-                        action = "*";
-                        break;
                     case "+":
-                        action = "+";
-                        break;
                     case "-":
-                        action = "-";
-                        break;
                     case "~":
-                        action = "~";
-                        output+=thisOutput;
-                        thisOutput=0f;
+                    	action = currentInput;
                         break;
-
+ 
 
                     default:
                         currentInput = currentInput.substring(0, 1).toUpperCase() + currentInput.substring(1);
